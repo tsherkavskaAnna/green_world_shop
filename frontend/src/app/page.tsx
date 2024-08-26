@@ -1,12 +1,13 @@
 import Hero from '@/components/Hero/Hero';
-import Nav from '@/components/Navigation/Nav';
-import Image from 'next/image';
+import ServicesPart from '@/components/Services/services';
 
 export default function Home() {
   return (
-	  <main className='min-h-screen w-full px-12 py-4'>
-		  <Nav />
-		  <Hero />
-    </main>
+    <>
+      <main className='min-h-screen bg-hero-image bg-cover bg-right-top bg-no-repeat pt-32'>
+        <Hero />
+      </main>
+      <ServicesPart />
+    </>
   );
 }

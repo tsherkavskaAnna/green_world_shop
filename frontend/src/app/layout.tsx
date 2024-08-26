@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { inter, baskervvile, blinker, montserrat } from './fonts';
 import './globals.css';
 import Nav from '@/components/Navigation/Nav';
+import Header from '@/components/Header/Header';
+import Baner from '@/components/Baner/baner';
+import Home from './page';
 
 export const metadata: Metadata = {
   title: 'Green World',
@@ -22,7 +25,8 @@ export default function RootLayout({
         className={`${inter.variable} ${baskervvile.variable} ${montserrat.variable} ${blinker.variable}`}
       >
         <link rel='icon' href='/favicon/plants-96.png' sizes='any' />
-        {children}
+        <Header />
+        <main className='px-12'>{children}</main>
       </body>
     </html>
   );
