@@ -1,15 +1,12 @@
 import React from 'react';
-import { baskervvile, montserrat } from '@/app/fonts';
+import { baskervvile } from '@/app/fonts';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { TfiShoppingCart } from 'react-icons/tfi';
 import Nav from '../Navigation/Nav';
 import Baner from '../Baner/baner';
 
 function Header() {
   return (
-    <div className='fixed w-full'>
+    <div className='fixed z-50 w-full'>
       <Baner />
       <div className='h-20 bg-white px-10 py-4'>
         <div className='flex items-center justify-between space-x-4 pb-3'>

@@ -26,7 +26,8 @@ const config = {
         blinker: ['var(--font-secondary)'],
       },
        backgroundImage: {
-        'hero-image': "url('/images/monstera.jpeg')"
+        'hero-image': "url('/images/monstera.jpeg')",
+        'hero-background': "url('/images/shop.jpg')",
       },
       theme: {
         backgroundSize: {

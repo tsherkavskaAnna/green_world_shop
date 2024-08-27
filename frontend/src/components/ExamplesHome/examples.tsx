@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 function Examples() {
   return (
-    <div className='flex cursor-pointer flex-nowrap pl-20 pt-44'>
+    <div className='z-10 flex cursor-pointer flex-nowrap pl-20 pt-44'>
       <div className='mr-8 h-20 w-72 rounded-full bg-slate-400 drop-shadow-xl'>
         <Image
           src='/images/pepper.png'

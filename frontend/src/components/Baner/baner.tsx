@@ -4,7 +4,7 @@ import { TbTruckDelivery } from 'react-icons/tb';
 
 function Baner() {
   return (
-    <div className='h-10 w-full bg-link'>
+    <div className='z-50 h-10 w-full bg-link'>
       <div className='flex h-full items-center justify-center'>
         <h1
           className={`${blinker.className} tracking-wide text-white antialiased`}

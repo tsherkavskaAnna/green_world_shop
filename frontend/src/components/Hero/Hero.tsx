@@ -1,7 +1,6 @@
 import { baskervvile, blinker } from '@/app/fonts';
 import React from 'react';
 import ButtonMenu from '../ButtonMenu/ButtonMenu';
-import CarouselMenu from '../CarouselMenu/Carousel';
 import Examples from '../ExamplesHome/examples';
 
 export default function Hero() {

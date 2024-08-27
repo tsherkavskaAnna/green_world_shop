@@ -7,7 +7,7 @@ export default function ButtonMenu() {
   return (
     <div className='flex pl-10 pt-4'>
       <Button
-        className={`${montserrat.className} rounded-full bg-logo text-white drop-shadow-lg hover:bg-yellow-700`}
+        className={`${montserrat.className} -z-0 rounded-full bg-logo text-white drop-shadow-lg hover:bg-yellow-700`}
       >
         Buy now
       </Button>
