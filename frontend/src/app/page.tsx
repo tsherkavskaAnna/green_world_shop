@@ -1,6 +1,7 @@
 import BuisnessHero from '@/components/BuisnessHero/BuisnessHero';
+import Clients from '@/components/Clients/Clients';
 import Hero from '@/components/Hero/Hero';
-import ServicesPart from '@/components/Services/services';
+import ServicesPart from '@/components/Benefits/services';
 import dynamic from 'next/dynamic';
 
 const DynamicHero = dynamic(
@@ -17,6 +18,7 @@ export default function Home() {
       </main>
       <ServicesPart />
       <DynamicHero />
+      <Clients />
     </>
   );
 }

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import { inter, baskervvile, blinker, montserrat } from './fonts';
 import './globals.css';
-import Nav from '@/components/Navigation/Nav';
 import Header from '@/components/Header/Header';
-import Baner from '@/components/Baner/baner';
-import Home from './page';
 import Footer from '@/components/Footer/Footer';
+import SessionProvider from '@/context/sessionProvider';
 
 export const metadata: Metadata = {
   title: 'Green World',
@@ -15,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

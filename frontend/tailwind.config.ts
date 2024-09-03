@@ -46,6 +46,7 @@ const config = {
         link: '#436850',
         text: '#ADBC9F',
         border: '#D9D9D9',
+        roundedButton: '#E5D9B6',
       },
       borderRadius: {
         lg: "var(--radius)",
