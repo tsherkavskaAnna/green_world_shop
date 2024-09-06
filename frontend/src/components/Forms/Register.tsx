@@ -1,5 +1,5 @@
 'use client';
-
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Card,
   CardContent,
@@ -8,15 +8,17 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import Image from 'next/image';
+
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import GithubSignInButton from '@/components/SignInButton';
+import { useSession } from 'next-auth/react';
 
 export interface User {
   username: string;
@@ -24,11 +26,15 @@ export interface User {
   password: string;
 }
 
-const RegisterPage = () => {
+const RegisterForm = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+  const { data: session } = useSession();
+  console.log('Session register page', session);
+
+  const route = useRouter();
   const handleRegister = async (e: any) => {
     e.preventDefault();
     const registerInfo = {
@@ -42,6 +48,13 @@ const RegisterPage = () => {
       registerInfo
     );
     const registerResponse = await register.data;
+    if (registerResponse.success) {
+      alert('Registration successful!');
+      route.push('/login');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+    }
   };
   return (
     <div className='py-6'>
@@ -53,19 +66,7 @@ const RegisterPage = () => {
           <CardContent>
             <form>
               <div className='grid w-full items-center gap-6'>
-                <Button
-                  className='rounded-[8px] bg-white shadow-lg hover:bg-white'
-                  type='submit'
-                >
-                  <Image
-                    src='/logo/google.png'
-                    width={30}
-                    height={30}
-                    alt='google'
-                    onClick={() => signIn('github')}
-                  />
-                  Sign up with GitHub
-                </Button>
+                <GithubSignInButton />
                 <div className='flex w-[450px] flex-nowrap items-center'>
                   <Separator className='ml-1 w-2/5' />
                   <p className='px-6'>OR</p>
@@ -133,7 +134,7 @@ const RegisterPage = () => {
           </CardFooter>
           <CardContent className='text-center'>
             Already have an account?{' '}
-            <Link href='/signin' className='cursor-pointer text-nav'>
+            <Link href='/login' className='cursor-pointer text-nav'>
               Sign in
             </Link>
           </CardContent>
@@ -143,4 +144,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default RegisterForm;

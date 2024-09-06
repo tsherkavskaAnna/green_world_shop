@@ -1,5 +1,5 @@
 
-import { authOptions } from '@/config/authOptions';
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 import NextAuth from 'next-auth';
 
 

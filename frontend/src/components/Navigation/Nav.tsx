@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { usePathname } from 'next/navigation';
-import UserNav from '../user-nav';
+import UserNav from '../UserNav';
 
 export default function Nav() {
   const currentPath = usePathname();
@@ -30,12 +30,7 @@ export default function Nav() {
       >
         About us
       </Link>
-      <Link
-        href='/dashboard'
-        className={`${montserrat.className} rounded-md px-7 py-3 text-sm text-primary transition-colors duration-300 hover:text-button`}
-      >
-        My section
-      </Link>
+      <UserNav />
     </nav>
   );
 }

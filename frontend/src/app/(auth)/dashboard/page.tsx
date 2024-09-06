@@ -1,39 +1,33 @@
-'use client';
-import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth';
 import { getSession, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
-function UserDashboard() {
-  const { data: session, status } = useSession();
+async function UserDashboard() {
+  const session = await getServerSession();
+  //const { data: session, status } = useSession();
+  console.log(session);
 
-  if (status === 'unauthenticated') {
+  if (!session || !session?.user) {
     return (
       <div className='min-h-screen pt-48 text-center font-montserrat'>
         <h2>This is personal user section.</h2>
         <p>
           Please{' '}
-          <Link href='/signin' className='text-link'>
+          <Link href='/login' className='text-link'>
             Login{' '}
           </Link>
           <span>or </span>
-          <Link href='/signup' className='text-link'>
+          <Link href='/register' className='text-link'>
             Register
           </Link>
         </p>
       </div>
     );
-  }
-
-  if (status === 'authenticated') {
+  } else {
     return (
       <div className='min-h-screen pt-36 text-center font-montserrat'>
-        <p>Welcome, {session.user?.name}</p>
-        <p>
-          <Link href='/auth/logout' className='text-link'>
-            Logout
-          </Link>
-        </p>
+        <p>Welcome, {session.user.email}</p>
       </div>
     );
   }

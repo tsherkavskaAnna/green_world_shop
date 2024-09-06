@@ -8,8 +8,8 @@ import { NextAuthOptions } from 'next-auth';
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: process.env.AUTH_GITHUB_ID as string,
-      clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -27,7 +27,6 @@ export const authOptions: NextAuthOptions = {
             identifier: email,
             password: password,
           });
-
           const user = response.data.user;
           const jwt = response.data.jwt;
 
@@ -45,27 +44,44 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: '/auth/signin',
-    error: '/register',
-    signOut: '/auth/signout',
+    signOut: "/dashboard",
+    error: 'auth/error'
   },
+  debug: true,
   session: {
     strategy: "jwt", 
   },
-  jwt: {
-    secret: process.env.NEXTAUTH_SECRET,
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) token.user = user;
-      return token;
-    },
-    async session({ session, token }) {
-      session.user = token.user as any;
-      return session;
-    },
-  },
   secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === 'development' ? true : false,
+  callbacks: {
+    async session({ session, token }: any) {
+      // Aggiorna il token JWT con i dati utente
+      session.jwt = token.jwt;
+      session.user = token;
+      return Promise.resolve(session);
+    },
+    async jwt({ token, user, account }: any) {
+     if(user) {
+      token.jwt = user.jwt;
+     }
+      if(account && account.provider === 'github') {
+        try {
+          console.log("Github Account:::::::: ", account);
+          const public_url = process.env.NEXT_PUBLIC_API_URL;
+          const response = await fetch(
+              `${public_url}/api/auth/${account.provider}/callback?access_token=${account?.access_token}`
+          );
+          const data = await response.json();
+          console.log("Strapi Callback Data:::::::::::::: ", data);
+          token.jwt = data.jwt;
+          token.id = data.user.id;
+      } catch (error) {
+          console.error('Fetch failed:', error);
+      }
+        
+      }
+      return Promise.resolve(token)
+    }
+  }
 }
 
 

@@ -7,40 +7,44 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import Image from 'next/image';
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { signIn } from 'next-auth/react';
+import GithubSignInButton from '@/components/SignInButton';
+import { signIn, useSession } from 'next-auth/react';
 
-const LoginPage = () => {
+const LoginForm = () => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const { data: session } = useSession();
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    signIn('credentials', {
+      email,
+      password,
+      callbackUrl: '/dashboard',
+    });
+  };
+
   return (
     <div className='py-6'>
       <div className='grid h-screen content-center justify-center bg-hero-image bg-cover bg-right-top bg-no-repeat'>
         <Card className='w-[550px] bg-slate-100 px-7 py-4 font-montserrat'>
           <CardHeader>
-            <CardTitle className='text-nav'>Sig in </CardTitle>
+            <CardTitle className='text-nav'>Sign in </CardTitle>
           </CardHeader>
           <CardContent>
             <form>
               <div className='grid w-full items-center gap-6'>
-                <Button className='rounded-[8px] bg-white shadow-lg hover:bg-white'>
-                  <Image
-                    src='/logo/google.png'
-                    width={30}
-                    height={30}
-                    alt='google'
-                  />
-                  Enter with Google
-                </Button>
+                <GithubSignInButton />
                 <div className='flex w-[450px] flex-nowrap items-center'>
                   <Separator className='ml-1 w-2/5' />
                   <p className='px-6'>OR</p>
                   <Separator className='w-2/5' />
                 </div>
-
                 <div className='flex flex-col space-y-1.5'>
                   <Label htmlFor='name' className='ml-1 text-link'>
                     Email
@@ -49,6 +53,8 @@ const LoginPage = () => {
                     id='email'
                     placeholder='Enter your email'
                     className='rounded-[8px] shadow-xl'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div className='flex flex-col space-y-1.5'>
@@ -59,6 +65,8 @@ const LoginPage = () => {
                     id='password'
                     placeholder='Enter your password'
                     className='rounded-[8px] shadow-xl'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className='ml-2 flex items-center space-x-2 text-link'>
@@ -79,7 +87,7 @@ const LoginPage = () => {
             </Button>
             <Button
               className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
-              onClick={() => signIn()}
+              onClick={onSubmit}
             >
               Login
             </Button>
@@ -90,4 +98,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default LoginForm;
