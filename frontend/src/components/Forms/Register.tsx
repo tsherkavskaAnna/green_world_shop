@@ -17,7 +17,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import GithubSignInButton from '@/components/SignInButton';
+import GoogleSignInButton from '@/components/SignInButton';
 import { useSession } from 'next-auth/react';
 
 export interface User {
@@ -66,7 +66,7 @@ const RegisterForm = () => {
           <CardContent>
             <form>
               <div className='grid w-full items-center gap-6'>
-                <GithubSignInButton />
+                <GoogleSignInButton />
                 <div className='flex w-[450px] flex-nowrap items-center'>
                   <Separator className='ml-1 w-2/5' />
                   <p className='px-6'>OR</p>

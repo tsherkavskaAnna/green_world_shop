@@ -8,8 +8,8 @@ import { NextAuthOptions } from 'next-auth';
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID as string,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -63,9 +63,9 @@ export const authOptions: NextAuthOptions = {
      if(user) {
       token.jwt = user.jwt;
      }
-      if(account && account.provider === 'github') {
+      if(account && account.provider === 'google') {
         try {
-          console.log("Github Account:::::::: ", account);
+          console.log("Google Account:::::::: ", account);
           const public_url = process.env.NEXT_PUBLIC_API_URL;
           const response = await fetch(
               `${public_url}/api/auth/${account.provider}/callback?access_token=${account?.access_token}`

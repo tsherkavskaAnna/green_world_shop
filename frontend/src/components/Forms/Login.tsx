@@ -12,8 +12,8 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import GithubSignInButton from '@/components/SignInButton';
 import { signIn, useSession } from 'next-auth/react';
+import GoogleSignInButton from '@/components/SignInButton';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
@@ -39,7 +39,7 @@ const LoginForm = () => {
           <CardContent>
             <form>
               <div className='grid w-full items-center gap-6'>
-                <GithubSignInButton />
+                <GoogleSignInButton />
                 <div className='flex w-[450px] flex-nowrap items-center'>
                   <Separator className='ml-1 w-2/5' />
                   <p className='px-6'>OR</p>
