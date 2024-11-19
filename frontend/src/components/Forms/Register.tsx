@@ -1,5 +1,4 @@
 'use client';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Card,
   CardContent,
@@ -32,8 +31,6 @@ const RegisterForm = () => {
   const [password, setPassword] = React.useState('');
 
   const { data: session } = useSession();
-  console.log('Session register page', session);
-
   const route = useRouter();
   const handleRegister = async (e: any) => {
     e.preventDefault();
@@ -50,11 +47,11 @@ const RegisterForm = () => {
     const registerResponse = await register.data;
     if (registerResponse.success) {
       alert('Registration successful!');
-      route.push('/login');
       setUsername('');
       setEmail('');
       setPassword('');
     }
+    route.push('/login');
   };
   return (
     <div className='py-6'>
@@ -64,7 +61,7 @@ const RegisterForm = () => {
             <CardTitle className='text-nav'>Create your account</CardTitle>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleRegister}>
               <div className='grid w-full items-center gap-6'>
                 <GoogleSignInButton />
                 <div className='flex w-[450px] flex-nowrap items-center'>
@@ -127,7 +124,6 @@ const RegisterForm = () => {
             <Button
               className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
               type='submit'
-              onClick={handleRegister}
             >
               Register
             </Button>

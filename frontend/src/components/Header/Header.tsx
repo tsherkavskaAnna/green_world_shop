@@ -15,7 +15,7 @@ function Header() {
             <h1
               className={`${baskervvile.className} rounded-md px-4 py-2 text-3xl text-logo transition-colors duration-300`}
             >
-              harmony
+              Harmony
             </h1>
           </div>
           <Nav />

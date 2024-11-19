@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { montserrat } from '../fonts';
 import {
@@ -7,11 +8,16 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-
-import ProductsPage from '../products/page';
 import FiltersSidebar from '@/components/Filters/filters';
+import { useRouter } from 'next/router';
+import { getSingleProduct } from '@/hook/getSingleProduct';
 
-const ShopPage = () => {
+const SingleProductPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const { product } = getSingleProduct(id as string);
+  console.log(product);
+
   return (
     <>
       <div className='flex min-h-screen'>
@@ -32,12 +38,10 @@ const ShopPage = () => {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
-          <div>
-            <ProductsPage />
-          </div>
+          <div>{/* <ProductCard /> */}</div>
         </main>
       </div>
     </>
   );
 };
-export default ShopPage;
+export default SingleProductPage;

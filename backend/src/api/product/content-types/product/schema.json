@@ -12,19 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string"
     },
-    "Price": {
+    "price": {
       "type": "decimal"
     },
-    "Description": {
-      "type": "text"
-    },
-    "Nickname": {
+    "nickname": {
       "type": "string"
     },
-    "Size": {
+    "size": {
       "type": "enumeration",
       "enum": [
         "S",
@@ -33,7 +30,7 @@
         "XL"
       ]
     },
-    "Image": {
+    "image": {
       "type": "media",
       "multiple": true,
       "required": false,
@@ -44,17 +41,33 @@
         "audios"
       ]
     },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "products"
+    "slug": {
+      "type": "uid"
     },
     "category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "products"
+    },
+    "reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::review.review",
+      "mappedBy": "product"
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "preset": "default"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }

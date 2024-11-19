@@ -11,8 +11,8 @@ export default ({ env }: any) => ({
       providers: {
         github: {
           enabled: true,
-          key: env('GITHUB_CLIENT_ID'),
-          secret: env('GITHUB_CLIENT_SECRET'),
+          key: env('GOOGLE_CLIENT_ID'),
+          secret: env('GOOGLE_CLIENT_SECRET'),
           redirect_uri: 'http://localhost:1337/api/connect/github/callback',
           scope: ['user', 'user:email', 'sessions']
         }
