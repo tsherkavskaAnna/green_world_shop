@@ -10,6 +10,7 @@ import {
 
 import ProductsPage from '../products/page';
 import FiltersSidebar from '@/components/Filters/filters';
+import { Button } from '@/components/ui/button';
 
 const ShopPage = () => {
   return (
@@ -18,7 +19,7 @@ const ShopPage = () => {
         <aside className='w-60 border-r-2 border-text py-32 pr-4'>
           <FiltersSidebar />
         </aside>
-        <main className='flex-1 pl-12 pt-28'>
+        <main className='flex-1 pl-12 pt-28 text-center'>
           <div className='pt-4'>
             <Breadcrumb className={`${montserrat.className} text-slate-500`}>
               <BreadcrumbList>
@@ -35,6 +36,9 @@ const ShopPage = () => {
           <div>
             <ProductsPage />
           </div>
+          <Button className='mb-10 bg-link p-5 text-center text-white hover:bg-text'>
+            Load more...
+          </Button>
         </main>
       </div>
     </>

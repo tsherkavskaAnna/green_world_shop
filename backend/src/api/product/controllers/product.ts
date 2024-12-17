@@ -16,7 +16,12 @@ export default factories.createCoreController('api::product.product', ({ strapi 
     
     const product = await strapi.db.query('api::product.product').findOne({
       where: { id: productId},
-      populate: ['products'], 
+      populate: {
+        image: { formats: true }, 
+        category: true,         
+        tags: true,             
+        reviews: true,         
+      },
     });
 
     if (!product) {

@@ -8,10 +8,10 @@ import {
   CardTitle,
 } from '../ui/card';
 import { Button } from '../ui/button';
-import { baskervvile, montserrat } from '@/app/fonts';
+import { montserrat } from '@/app/fonts';
 function BuisnessHero() {
   return (
-    <div className='bg-hero-background mb-8 grid min-h-screen grid-cols-2 place-content-center bg-cover bg-no-repeat px-32 py-10'>
+    <div className='mb-8 grid min-h-screen grid-cols-2 place-content-center bg-hero-background bg-cover bg-no-repeat px-32 py-10'>
       <div className=''>
         <Card className='h-96 w-96 bg-white'>
           <CardHeader>
@@ -35,7 +35,7 @@ function BuisnessHero() {
           <CardFooter>
             <p>
               <Button
-                className={`${montserrat.className} rounded-full text-white`}
+                className={`${montserrat.className} rounded-lg text-white`}
               >
                 Get in touch
               </Button>
