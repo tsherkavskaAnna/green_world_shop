@@ -8,7 +8,6 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardImage,
   CardTitle,
 } from '@/components/ui/card';
 import { getAllProducts } from '@/hook/getAllProducts';

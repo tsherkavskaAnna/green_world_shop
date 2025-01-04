@@ -1,8 +1,7 @@
-import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import axios from 'axios';
 import { NextAuthOptions } from 'next-auth';
-
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -11,28 +10,31 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       authorization: {
         params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
         },
       },
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const email = credentials?.email || "";
-        const password = credentials?.password || "";
+        const email = credentials?.email || '';
+        const password = credentials?.password || '';
 
         // Chiamata all'API di Strapi per l'autenticazione
         try {
-          const response = await axios.post('http://localhost:1337/api/auth/local', {
-            identifier: email,
-            password: password,
-          });
+          const response = await axios.post(
+            'http://localhost:1337/api/auth/local',
+            {
+              identifier: email,
+              password: password,
+            }
+          );
           const user = response.data.user;
           const jwt = response.data.jwt;
 
@@ -47,14 +49,14 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  
+
   pages: {
     signIn: '/auth/login',
-    signOut: "/dashboard",
-    error: '/auth/error'
+    signOut: '/dashboard',
+    error: '/auth/error',
   },
   session: {
-    strategy: "jwt", 
+    strategy: 'jwt',
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -67,7 +69,7 @@ export const authOptions: NextAuthOptions = {
         token.picture = user.image;
         token.sub = user.id;
       }
-      return token; 
+      return token;
     },
     async session({ token, session }: any) {
       session.user.name = token.name;
@@ -77,6 +79,4 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  }
-
-
+};

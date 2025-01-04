@@ -1,42 +1,41 @@
-
-import type { Config } from "tailwindcss"
+import type { Config } from 'tailwindcss';
 
 const config = {
-  darkMode: ["class"],
+  darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx,js,jsx,mdx}',
     './components/**/*.{ts,tsx,js,jsx,mdx}',
     './app/**/*.{ts,tsx,js,jsx,mdx}',
     './src/**/*.{ts,tsx,js,jsx,mdx}',
-	],
-  prefix: "",
+  ],
+  prefix: '',
   theme: {
     container: {
       center: true,
-      padding: "4rem",
+      padding: '4rem',
       screens: {
-        "2xl": "1400px",
+        '2xl': '1400px',
       },
     },
     extend: {
       fontFamily: {
         inter: ['var(--font-main)'],
-        baskervvile: ['var(--font-logo)'], 
+        baskervvile: ['var(--font-logo)'],
         montserrat: ['var(--font-primary)'],
         blinker: ['var(--font-secondary)'],
       },
-       backgroundImage: {
+      backgroundImage: {
         'hero-image': "url('/images/monstera.jpeg')",
         'hero-background': "url('/images/shop.jpg')",
       },
       theme: {
         backgroundSize: {
-          'auto': 'auto',
-          'cover': 'cover',
-          'contain': 'contain',
+          auto: 'auto',
+          cover: 'cover',
+          contain: 'contain',
           '50%': '50%',
           '16': '4rem',
-        }
+        },
       },
       colors: {
         primary: '#12372A',
@@ -50,31 +49,31 @@ const config = {
         accessColor: '#FF9100',
       },
       borderRadius: {
-        'none': '0',
-        'sm': '0.125rem',
+        none: '0',
+        sm: '0.125rem',
         DEFAULT: '0.25rem',
-        'md': '0.375rem',
-        'lg': '0.5rem',
-        'full': '9999px',
-        'large': '12px',
+        md: '0.375rem',
+        lg: '0.5rem',
+        full: '9999px',
+        large: '12px',
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config;
 
-export default config
+export default config;

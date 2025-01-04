@@ -1,5 +1,5 @@
-import { z } from 'zod'
- 
+import { z } from 'zod';
+
 export const SignupFormSchema = z.object({
   username: z
     .string()
@@ -15,17 +15,21 @@ export const SignupFormSchema = z.object({
       message: 'Contain at least one special character.',
     }) */
     .trim(),
-    terms: z.boolean().refine(value => value === true, "You must agree to the terms and conditions"),
-})
+  terms: z
+    .boolean()
+    .refine(
+      (value) => value === true,
+      'You must agree to the terms and conditions'
+    ),
+});
 
- 
 export type FormState =
   | {
       errors?: {
-        name?: string[]
-        email?: string[]
-        password?: string[]
-      }
-      message?: string
+        name?: string[];
+        email?: string[];
+        password?: string[];
+      };
+      message?: string;
     }
-  | undefined
+  | undefined;

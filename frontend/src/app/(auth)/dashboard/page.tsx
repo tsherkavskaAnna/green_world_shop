@@ -1,12 +1,10 @@
 import { getServerSession } from 'next-auth';
-import { getSession, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
 
 async function UserDashboard() {
   const session = await getServerSession();
   //const { data: session, status } = useSession();
-  console.log(session);
 
   if (!session || !session?.user) {
     return (
