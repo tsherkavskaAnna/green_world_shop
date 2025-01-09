@@ -1,5 +1,4 @@
 import React from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 
 import { Separator } from '@/components/ui/separator';
@@ -10,7 +9,7 @@ import SliderPrice from '../Slider';
 
 const FiltersSidebar = () => {
   return (
-    <>
+    <div className='hidden sm:block'>
       <div className=''>
         <p className={`${montserrat.className} mb-3 text-primary`}>Filters</p>
         <Separator className='bg-text' />
@@ -55,7 +54,7 @@ const FiltersSidebar = () => {
       >
         <Tags />
       </div>
-    </>
+    </div>
   );
 };
 

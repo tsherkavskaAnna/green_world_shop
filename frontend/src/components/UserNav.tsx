@@ -1,17 +1,19 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { TfiShoppingCart } from 'react-icons/tfi';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { montserrat } from '@/app/fonts';
 import Link from 'next/link';
 
 export default function UserNav() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   if (session) {
     return (
-      <div className='flex flex-nowrap items-center pl-10 font-montserrat text-link'>
-        <p>{session.user?.name}</p>
+      <div className='mt-10 flex flex-wrap items-center pl-4 font-montserrat text-link lg:mt-0 lg:flex-nowrap lg:pl-10'>
+        <div>
+          <p>{session.user?.email || session.user?.name}</p>
+        </div>
         <Link href='/dashboard'>
           <Button
             className={`${montserrat.className} bg-trasparent ml-4 hover:bg-transparent`}

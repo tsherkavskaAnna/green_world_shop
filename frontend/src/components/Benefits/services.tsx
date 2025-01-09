@@ -4,8 +4,8 @@ import React from 'react';
 
 function ServicesPart() {
   return (
-    <div className='flex h-96 flex-nowrap justify-items-center bg-white p-8'>
-      <div className='p-8 text-link'>
+    <div className='h-auto bg-white p-8 md:flex md:flex-nowrap md:justify-items-center lg:h-96'>
+      <div className='text-link md:p-8'>
         <Image
           src='/icons/quality.png'
           width={80}
@@ -17,7 +17,7 @@ function ServicesPart() {
               'invert(30%) sepia(60%) saturate(600%) hue-rotate(85deg) brightness(80%) contrast(90%)',
           }}
         />
-        <h2 className={`${baskervvile.className} mb-3 text-3xl font-semibold`}>
+        <h2 className='mb-3 font-baskervvile text-xl font-semibold md:text-3xl'>
           Unbeatable quality
         </h2>
         <span className={`${baskervvile.className}`}>
@@ -25,7 +25,7 @@ function ServicesPart() {
           quality plants at the very best prices.
         </span>
       </div>
-      <div className='p-8 text-link'>
+      <div className='text-link md:p-8'>
         <Image
           src='/icons/hand.png'
           width={80}
@@ -37,7 +37,9 @@ function ServicesPart() {
               'invert(30%) sepia(60%) saturate(600%) hue-rotate(85deg) brightness(80%) contrast(90%)',
           }}
         />
-        <h2 className={`${baskervvile.className} mb-3 text-3xl font-semibold`}>
+        <h2
+          className={`${baskervvile.className} mb-3 text-xl font-semibold md:text-3xl`}
+        >
           Next level service
         </h2>
         <span className={`${baskervvile.className}`}>
@@ -45,19 +47,21 @@ function ServicesPart() {
           and Bethesda to explore more plants, planters, & care accessories.
         </span>
       </div>
-      <div className='p-8 text-link'>
+      <div className='text-link md:p-8'>
         <Image
           src='/icons/smile.png'
           width={80}
           height={80}
           alt='smile'
-          className='mb-4'
+          className='mb-4 text-center'
           style={{
             filter:
               'invert(30%) sepia(60%) saturate(600%) hue-rotate(85deg) brightness(80%) contrast(90%)',
           }}
         />
-        <h2 className={`${baskervvile.className} mb-3 text-3xl font-semibold`}>
+        <h2
+          className={`${baskervvile.className} mb-3 text-xl font-semibold md:text-3xl`}
+        >
           Free care instructions
         </h2>
         <span className={`${baskervvile.className}`}>

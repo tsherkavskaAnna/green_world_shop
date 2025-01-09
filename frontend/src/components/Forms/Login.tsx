@@ -12,13 +12,12 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import GoogleSignInButton from '@/components/SignInButton';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const { data: session } = useSession();
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,18 +1,19 @@
-'use client';
-
-import { getTags } from '@/hook/getTags';
 import React from 'react';
 import { Checkbox } from './ui/checkbox';
 import { montserrat } from '@/app/fonts';
+import { getTags } from '@/services/getTags';
 
-const Tags = () => {
-  const { tags } = getTags();
-  const [selectedTag, setSelectedTag] = React.useState('');
+const Tags = async () => {
+  const tags = await getTags();
+  //const [selectedTag, setSelectedTag] = React.useState('');
 
   return (
     <>
       {tags.map((tag: Tag) => (
-        <div className={`${montserrat.className} flex flex-nowrap text-link`}>
+        <div
+          className={`${montserrat.className} flex flex-nowrap text-link`}
+          key={tag.id}
+        >
           <Checkbox id='tag' className='mr-3 rounded-3xl' key={tag.id} />
           <label
             htmlFor='tag'

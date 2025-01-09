@@ -24,6 +24,8 @@ export default [
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       'react/no-unescaped-entities': 'off',
       'react/display-name': 'off',
+      "react/react-in-jsx-scope": "off",
+
     }
   }
 ];

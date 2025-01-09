@@ -10,8 +10,10 @@ export function getStrapiURL() {
 }
 
 export function getStrapiMedia(url: string | null) {
-  if (url == null) return null;
-  if (url.startsWith('data:')) return url;
-  if (url.startsWith('http') || url.startsWith('//')) return url;
-  return `${getStrapiURL()}${url}`;
+  if (!url) return null; // Gestione dei valori null o non definiti
+  if (url.startsWith('data:')) return url; // Ritorna direttamente per i dati inline
+  if (url.startsWith('http')) return url; // Ritorna direttamente per URL assoluti
+  if (url.startsWith('/')) return `${getStrapiURL()}${url}`; // Aggiunge il dominio base a URL relativi
+  return `${getStrapiURL()}/${url}`; // Aggiunge dominio base per percorsi relativi non ben formattati
 }
+

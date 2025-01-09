@@ -9,11 +9,12 @@ import {
 } from '../ui/card';
 import { Button } from '../ui/button';
 import { montserrat } from '@/app/fonts';
+
 function BuisnessHero() {
   return (
-    <div className='mb-8 grid min-h-screen grid-cols-2 place-content-center bg-hero-background bg-cover bg-no-repeat px-32 py-10'>
+    <div className='grid-col grid min-h-screen place-content-center bg-cover bg-no-repeat md:mb-8 md:bg-hero-background md:px-32 md:py-10 lg:grid-cols-2'>
       <div className=''>
-        <Card className='h-96 w-96 bg-white'>
+        <Card className='bg-white md:h-96 md:w-96'>
           <CardHeader>
             <CardTitle className={`${montserrat.className}`}>
               Plants for your business

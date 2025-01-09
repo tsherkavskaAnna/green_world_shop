@@ -8,13 +8,6 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
     }),
     CredentialsProvider({
       name: 'Credentials',
@@ -41,6 +34,7 @@ export const authOptions: NextAuthOptions = {
           if (user) {
             return { ...user, jwt };
           }
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
           throw new Error('Credenziali non valide');
         }
@@ -60,8 +54,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user, account }) {
-      console.log('jwt callback', { token, user, account });
+    async jwt({ token, user}) {
 
       if (user) {
         token.name = user.name;
@@ -71,6 +64,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ token, session }: any) {
       session.user.name = token.name;
       session.user.email = token.email;

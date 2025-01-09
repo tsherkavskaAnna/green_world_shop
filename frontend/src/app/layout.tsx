@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { inter, baskervvile, blinker, montserrat } from './fonts';
-import './globals.css';
+import '../styles/global.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { getServerSession } from 'next-auth/next';
@@ -36,7 +36,7 @@ export default async function MainLayout({
           <SessionProvider session={session}>
             <link rel='icon' href='/favicon/plants-96.png' sizes='any' />
             <Header />
-            <main className='z-0 px-12'>{children}</main>
+            <main className='z-0 sm:px-12'>{children}</main>
             <Footer />
           </SessionProvider>
         </ThemeProvider>

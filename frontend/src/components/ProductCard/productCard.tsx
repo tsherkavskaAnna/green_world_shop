@@ -1,15 +1,14 @@
 import React from 'react';
-import { getSingleProduct } from '@/hook/getSingleProduct';
 import { ImageStrapi } from '../ImageStrapi';
 import { ImageProduct, Review } from '@/interface/product';
-import Image from 'next/image';
 import { htmlToText } from 'html-to-text';
 import { Button } from '../ui/button';
 import { LuHeart } from 'react-icons/lu';
 import StarRating from '../StarRating';
+import { getProductById } from '@/services/getProductById';
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const { product } = getSingleProduct(params.id);
+const ProductPage = async ({ params }: { params: { id: string } }) => {
+  const product = await getProductById(params.id);
 
   const images = product.image || [];
   const mainImage = images[0];
@@ -27,13 +26,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   return (
     <div className='mx-auto py-6'>
-      <div className='grid-row grid gap-5 md:grid-cols-3 xl:grid-cols-5'>
+      <div className='sm:grid-row gap-5 sm:grid md:grid-cols-3 xl:grid-cols-4'>
         <div className='col-span-2 gap-4'>
           <div className='flex h-full w-full flex-col gap-3'>
             {mainImage && (
               <ImageStrapi
                 key={mainImage.id}
-                src={mainImage.formats.large.url}
+                src={mainImage.url}
                 alt={mainImage.alternativeText || product.name}
                 height={1000}
                 width={1000}
@@ -44,7 +43,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <StarRating rating={rating} />
               {comments.length > 0 &&
                 comments.map((comment: Review) => (
-                  <div>
+                  <div key={comment.id}>
                     <p className='font-baskervvile text-sm text-link'>
                       {comment.author}
                     </p>
@@ -58,35 +57,18 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div className='col-span-1 flex flex-col gap-2'>
-          {sideImages.length > 0 ? (
-            sideImages.map((image: ImageProduct) => (
-              <ImageStrapi
-                key={image.id}
-                src={image.formats.medium.url}
-                alt={image.alternativeText || product.name}
-                height={300}
-                width={300}
-                className='w-full rounded-md'
-              />
-            ))
-          ) : (
-            <div className='flex flex-col justify-between gap-4 rounded-lg'>
-              <Image
-                src='/images/default2.jpg'
-                width={300}
-                height={300}
-                alt='Picture of default'
-                className='rounded-lg'
-              />
-              <Image
-                src='/images/default3.jpg'
-                width={300}
-                height={300}
-                alt='Picture of default'
-                className='rounded-lg'
-              />
-            </div>
-          )}
+          {sideImages.length > 0
+            ? sideImages.map((image: ImageProduct) => (
+                <ImageStrapi
+                  key={image.id}
+                  src={image.formats.medium?.url || ''}
+                  alt={image.alternativeText || product.name}
+                  height={300}
+                  width={300}
+                  className='w-full rounded-md'
+                />
+              ))
+            : null}
         </div>
         <div className='col-span-3 flex flex-col gap-3 rounded-lg bg-roundedButton p-6 text-start xl:col-span-2'>
           <h1 className='font-blinker text-4xl font-bold text-accessColor'>
@@ -127,4 +109,6 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
+};
+
+export default ProductPage;

@@ -14,10 +14,9 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import GoogleSignInButton from '@/components/SignInButton';
-import { useSession } from 'next-auth/react';
+import axios from 'axios';
 
 export interface User {
   username: string;
@@ -29,30 +28,57 @@ const RegisterForm = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [acceptTerms, setAcceptTerms] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
-  const { data: session } = useSession();
   const route = useRouter();
-  const handleRegister = async (e: any) => {
-    e.preventDefault();
+
+  const handleRegister = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    // Validazione dei Terms and Conditions
+    if (!acceptTerms) {
+      setErrorMessage('You must accept the terms and conditions to register.');
+      return;
+    }
+
     const registerInfo = {
       username,
       email,
       password,
     };
 
-    const register = await axios.post(
-      'http://localhost:1337/api/auth/local/register',
-      registerInfo
-    );
-    const registerResponse = await register.data;
-    if (registerResponse.success) {
+    try {
+      const register = await axios.post(
+        'http://localhost:1337/api/auth/local/register',
+        registerInfo,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        }
+      );
+
+      const registerResponse = await register.data;
       alert('Registration successful!');
-      setUsername('');
-      setEmail('');
-      setPassword('');
+      route.push('/login');
+
+      if (registerResponse.success) {
+        alert('Registration successful!');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+        setAcceptTerms(false);
+        setErrorMessage('');
+        route.push('/login');
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      new Error('Error with registration new user');
     }
-    route.push('/login');
   };
+
   return (
     <div className='py-6'>
       <div className='grid h-screen content-center justify-center bg-hero-image bg-cover bg-right-top bg-no-repeat'>
@@ -106,7 +132,13 @@ const RegisterForm = () => {
                   />
                 </div>
                 <div className='ml-2 flex items-center space-x-2 text-link'>
-                  <Checkbox id='terms' />
+                  <Checkbox
+                    id='terms'
+                    checked={acceptTerms}
+                    onCheckedChange={(checked) =>
+                      setAcceptTerms(checked as boolean)
+                    }
+                  />
                   <label
                     htmlFor='terms'
                     className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -114,16 +146,23 @@ const RegisterForm = () => {
                     Accept terms and conditions
                   </label>
                 </div>
+                {errorMessage && (
+                  <p className='text-sm text-red-600'>{errorMessage}</p>
+                )}
               </div>
             </form>
           </CardContent>
           <CardFooter className='flex justify-end'>
-            <Button className='mr-4 rounded-[8px] bg-button font-montserrat text-white'>
+            <Button
+              className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
+              onClick={() => route.push('/')}
+            >
               Cancel
             </Button>
             <Button
               className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
               type='submit'
+              onClick={handleRegister}
             >
               Register
             </Button>
