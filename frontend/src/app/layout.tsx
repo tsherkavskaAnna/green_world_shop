@@ -7,6 +7,7 @@ import { getServerSession } from 'next-auth/next';
 import SessionProvider from '@/context/sessionProvider';
 import { authOptions } from './api/auth/[...nextauth]/authOptions';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import 'react-photo-view/dist/react-photo-view.css';
 
 export const metadata: Metadata = {
   title: 'Green World',

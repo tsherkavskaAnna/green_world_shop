@@ -1,18 +1,18 @@
 import React from 'react';
-import { ImageStrapi } from '../ImageStrapi';
-import { ImageProduct, Review } from '@/interface/product';
+
 import { htmlToText } from 'html-to-text';
 import { Button } from '../ui/button';
 import { LuHeart } from 'react-icons/lu';
 import StarRating from '../StarRating';
 import { getProductById } from '@/services/getProductById';
+import ImageGallery from '../ImageGallery/ImageGallery';
+import { Review } from '@/interface/product';
+//import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
   const product = await getProductById(params.id);
 
   const images = product.image || [];
-  const mainImage = images[0];
-  const sideImages = images.slice(1, 4);
   const comments = product.reviews || [];
   const rating = product?.reviews
     ? product.reviews.map((rev: Review) => rev.rating)
@@ -26,51 +26,12 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className='mx-auto py-6'>
-      <div className='sm:grid-row gap-5 sm:grid md:grid-cols-3 xl:grid-cols-4'>
-        <div className='col-span-2 gap-4'>
-          <div className='flex h-full w-full flex-col gap-3'>
-            {mainImage && (
-              <ImageStrapi
-                key={mainImage.id}
-                src={mainImage.url}
-                alt={mainImage.alternativeText || product.name}
-                height={1000}
-                width={1000}
-                className='w-full rounded-md object-cover'
-              />
-            )}
-            <div className='rounded-lg bg-roundedButton p-3'>
-              <StarRating rating={rating} />
-              {comments.length > 0 &&
-                comments.map((comment: Review) => (
-                  <div key={comment.id}>
-                    <p className='font-baskervvile text-sm text-link'>
-                      {comment.author}
-                    </p>
-                    <div
-                      className='mt-2 font-blinker text-sm text-gray-600'
-                      dangerouslySetInnerHTML={{ __html: comment.comment }}
-                    />
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-        <div className='col-span-1 flex flex-col gap-2'>
-          {sideImages.length > 0
-            ? sideImages.map((image: ImageProduct) => (
-                <ImageStrapi
-                  key={image.id}
-                  src={image.formats.medium?.url || ''}
-                  alt={image.alternativeText || product.name}
-                  height={300}
-                  width={300}
-                  className='w-full rounded-md'
-                />
-              ))
-            : null}
-        </div>
-        <div className='col-span-3 flex flex-col gap-3 rounded-lg bg-roundedButton p-6 text-start xl:col-span-2'>
+      {/* Layout principale */}
+      <div className='grid gap-6 lg:grid-cols-2'>
+        {/* Sezione Galleria */}
+        <ImageGallery images={images} productName={product.name} />
+        {/* Sezione Descrizione */}
+        <div className='flex flex-col gap-3 rounded-lg bg-roundedButton p-6 text-start'>
           <h1 className='font-blinker text-4xl font-bold text-accessColor'>
             {product.name}
           </h1>
@@ -106,6 +67,23 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
             </Button>
           </div>
         </div>
+      </div>
+
+      {/* Recensioni */}
+      <div className='mt-8 rounded-lg bg-roundedButton p-4'>
+        <StarRating rating={rating} />
+        {comments.length > 0 &&
+          comments.map((comment: Review) => (
+            <div key={comment.id} className='mt-4'>
+              <p className='font-baskervvile text-sm text-link'>
+                {comment.author}
+              </p>
+              <div
+                className='mt-2 font-blinker text-sm text-gray-600'
+                dangerouslySetInnerHTML={{ __html: comment.comment }}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-
+import 'react-photo-view/dist/react-photo-view.css';
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
