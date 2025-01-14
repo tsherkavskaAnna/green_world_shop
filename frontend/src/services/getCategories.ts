@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { urlBase } from '@/lib/urlBase';
 
+
+
 export async function getCategories() {
   try {
     const response = await fetch(`${urlBase}/api/categories?populate=*`, {
@@ -15,7 +17,6 @@ export async function getCategories() {
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
-
     const data = await response.json();
     return data.data;
   } catch (error) {

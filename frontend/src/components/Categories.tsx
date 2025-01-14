@@ -5,6 +5,8 @@ import { getCategories } from '@/services/getCategories';
 
 const Categories = async () => {
   const categories = await getCategories();
+  console.log(categories);
+
   return (
     <>
       {categories.map((cat: Category) => (

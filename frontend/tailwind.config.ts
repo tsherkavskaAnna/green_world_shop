@@ -61,6 +61,9 @@ const config = {
         full: '9999px',
         large: '12px',
       },
+      transitionTimingFunction: {
+        'custom-ease': 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

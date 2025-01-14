@@ -54,7 +54,9 @@ const CardProduct: React.FC<CardProps> = ({ product }) => {
             <p>{product.price} €</p>
             <StarRating rating={calculateAverageRating(product.reviews)} />
           </div>
-          <Button className='rounded-xl bg-link text-white'>Add to card</Button>
+          <Button className='ease-custom-ease rounded-xl bg-link text-white transition delay-150 duration-300 hover:bg-accessColor'>
+            Add to cart
+          </Button>
         </CardFooter>
       </Card>
     </>

@@ -49,7 +49,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
           <p className='font-baskervvile text-primary'>{plainDescription}</p>
           <div className='mt-6 w-full flex-1'>
             <div className='flex flex-nowrap'>
-              <div className='mr-2 flex flex-nowrap content-center items-baseline justify-center gap-3 rounded-lg bg-white hover:bg-white'>
+              <div className='mr-2 flex flex-nowrap content-center items-baseline justify-center gap-3 rounded-lg bg-white'>
                 <Button className='rounded-lg bg-white font-bold text-link hover:bg-white'>
                   -
                 </Button>
@@ -58,11 +58,11 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
                   +
                 </Button>
               </div>
-              <Button className='w-[80%] rounded-md bg-link px-4 py-2 font-inter text-white'>
-                Add to Card
+              <Button className='ease-custom-ease w-[80%] rounded-md border-2 border-link bg-link px-4 py-2 font-inter text-white transition delay-150 duration-300 hover:bg-link hover:text-accessColor hover:shadow-xl'>
+                Add to Cart
               </Button>
             </div>
-            <Button className='mt-4 w-full border-2 border-accessColor bg-roundedButton font-inter text-accessColor hover:bg-transparent hover:opacity-70'>
+            <Button className='ease-custom-ease mt-4 w-full bg-accessColor font-inter text-white transition delay-150 duration-300 hover:border-white hover:bg-accessColor hover:text-link hover:shadow-lg'>
               <LuHeart className='mr-2' /> Wishlist
             </Button>
           </div>
@@ -70,7 +70,7 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
       </div>
 
       {/* Recensioni */}
-      <div className='mt-8 rounded-lg bg-roundedButton p-4'>
+      <div className='mt-8 rounded-lg bg-border p-4'>
         <StarRating rating={rating} />
         {comments.length > 0 &&
           comments.map((comment: Review) => (

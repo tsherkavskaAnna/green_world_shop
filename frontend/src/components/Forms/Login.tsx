@@ -29,9 +29,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div className='py-6'>
-      <div className='grid h-screen content-center justify-center bg-hero-image bg-cover bg-right-top bg-no-repeat'>
-        <Card className='w-[550px] bg-slate-100 px-7 py-4 font-montserrat'>
+    <div className='py-16 md:py-10'>
+      <div className='grid h-screen content-center justify-center bg-cover bg-right-top bg-no-repeat sm:bg-hero-image'>
+        <Card className='bg-slate-100 px-7 py-4 font-montserrat md:w-[550px]'>
           <CardHeader>
             <CardTitle className='text-nav'>Sign in </CardTitle>
           </CardHeader>
@@ -39,10 +39,10 @@ const LoginForm = () => {
             <form>
               <div className='grid w-full items-center gap-6'>
                 <GoogleSignInButton />
-                <div className='flex w-[450px] flex-nowrap items-center'>
-                  <Separator className='ml-1 w-2/5' />
+                <div className='flex flex-nowrap items-center md:w-[450px]'>
+                  <Separator className='w-1/3 md:w-2/5' />
                   <p className='px-6'>OR</p>
-                  <Separator className='w-2/5' />
+                  <Separator className='w-1/3 md:w-2/5' />
                 </div>
                 <div className='flex flex-col space-y-1.5'>
                   <Label htmlFor='name' className='ml-1 text-link'>
@@ -80,12 +80,12 @@ const LoginForm = () => {
               </div>
             </form>
           </CardContent>
-          <CardFooter className='flex justify-end'>
-            <Button className='mr-4 rounded-[8px] bg-button font-montserrat text-white'>
+          <CardFooter className='grid w-full gap-4 sm:flex sm:justify-end'>
+            <Button className='rounded-[8px] bg-button font-montserrat text-white'>
               Cancel
             </Button>
             <Button
-              className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
+              className='rounded-[8px] bg-button font-montserrat text-white'
               onClick={onSubmit}
             >
               Login

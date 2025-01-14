@@ -1,3 +1,11 @@
+import ShoppingCart from '@/components/ShoppingCart/ShoppingCart';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import React from 'react';
@@ -24,8 +32,29 @@ async function UserDashboard() {
     );
   } else {
     return (
-      <div className='min-h-screen pt-36 text-center font-montserrat'>
-        <p>Welcome, {session.user.email}</p>
+      <div className='e min-h-screen justify-center bg-cover bg-right-top bg-no-repeat pt-36 font-montserrat'>
+        <div className='px-16'>
+          <Breadcrumb className='font-montserrat text-slate-500'>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/shop'>Shop</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href='/dashboard'>
+                  Your Shopping Cart
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+        <div className='mt-24'>
+          <ShoppingCart />
+        </div>
       </div>
     );
   }
