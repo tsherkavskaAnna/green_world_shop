@@ -12,7 +12,7 @@ export default function UserNav() {
     return (
       <div className='mt-10 flex flex-wrap items-center pl-4 font-montserrat text-link lg:mt-0 lg:flex-nowrap lg:pl-10'>
         <div>
-          <p>{session.user?.email || session.user?.name}</p>
+          <p>{session.user?.name}</p>
         </div>
         <Link href='/dashboard'>
           <Button

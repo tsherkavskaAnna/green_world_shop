@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import GoogleSignInButton from '@/components/SignInButton';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 export interface User {
   username: string;
@@ -38,7 +39,7 @@ const RegisterForm = () => {
 
     // Validazione dei Terms and Conditions
     if (!acceptTerms) {
-      setErrorMessage('You must accept the terms and conditions to register.');
+      toast.warning('You must accept the terms and conditions to register.');
       return;
     }
 
@@ -61,11 +62,11 @@ const RegisterForm = () => {
       );
 
       const registerResponse = await register.data;
-      alert('Registration successful!');
+      toast.success('Registration successful!');
       route.push('/login');
 
       if (registerResponse.success) {
-        alert('Registration successful!');
+        toast.success('Registration successful!');
         setUsername('');
         setEmail('');
         setPassword('');

@@ -1,7 +1,8 @@
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import axios from 'axios';
 import { NextAuthOptions } from 'next-auth';
+import { loginWithCredentials } from '@/app/services/auth-service';
+
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,30 +17,23 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const email = credentials?.email || '';
-        const password = credentials?.password || '';
-
-        // Chiamata all'API di Strapi per l'autenticazione
         try {
-          const response = await axios.post(
-            'http://localhost:1337/api/auth/local',
-            {
-              identifier: email,
-              password: password,
-            }
+          const data = await loginWithCredentials(
+            credentials!.email,
+            credentials!.password
           );
-          const user = response.data.user;
-          const jwt = response.data.jwt;
-
-          if (user) {
-            return { ...user, jwt };
-          }
+          return {
+            name: data.user.username,
+            email: data.user.email,
+            id: data.user.id.toString(),
+            strapiUserId: data.user.id,
+            blocked: data.user.blocked,
+            strapiToken: data.jwt,
+          };
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
-          throw new Error('Credenziali non valide');
+          throw new Error('Errore durante il login');
         }
-
-        return null;
       },
     }),
   ],
@@ -54,22 +48,36 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user}) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, account, user }: any) {
+      if (account && account.provider === 'google') {
+        // Gestisci autenticazione Google con Strapi
+        const strapiResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google/callback?access_token=${account.access_token}`
+        );
+        const strapiData = await strapiResponse.json();
 
-      if (user) {
-        token.name = user.name;
-        token.email = user.email;
-        token.picture = user.image;
-        token.sub = user.id;
+        token.strapiToken = strapiData.jwt;
+        token.strapiUserId = strapiData.user.id;
+        token.blocked = strapiData.user.blocked;
       }
+
+      if (user && account?.provider === 'credentials') {
+        // Aggiungi dati per il provider Credentials
+        token.strapiToken = user.strapiToken;
+        token.strapiUserId = user.strapiUserId;
+        token.blocked = user.blocked;
+      }
+
       return token;
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async session({ token, session }: any) {
-      session.user.name = token.name;
-      session.user.email = token.email;
-      session.user.image = token.picture;
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async session({ session, token }: any) {
+      session.user.id = token.sub;
+      session.user.strapiUserId = token.strapiUserId;
+      session.user.strapiToken = token.strapiToken;
+      session.user.blocked = token.blocked;
       return session;
     },
   },

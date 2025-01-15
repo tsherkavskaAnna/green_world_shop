@@ -7,6 +7,7 @@ import StarRating from '../StarRating';
 import { getProductById } from '@/services/getProductById';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import { Review } from '@/interface/product';
+import Counter from '../Counter';
 //import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ProductPage = async ({ params }: { params: { id: string } }) => {
@@ -48,21 +49,8 @@ const ProductPage = async ({ params }: { params: { id: string } }) => {
           </div>
           <p className='font-baskervvile text-primary'>{plainDescription}</p>
           <div className='mt-6 w-full flex-1'>
-            <div className='flex flex-nowrap'>
-              <div className='mr-2 flex flex-nowrap content-center items-baseline justify-center gap-3 rounded-lg bg-white'>
-                <Button className='rounded-lg bg-white font-bold text-link hover:bg-white'>
-                  -
-                </Button>
-                <span className='text-link'>0</span>
-                <Button className='rounded-lg bg-white font-bold text-link hover:bg-white'>
-                  +
-                </Button>
-              </div>
-              <Button className='ease-custom-ease w-[80%] rounded-md border-2 border-link bg-link px-4 py-2 font-inter text-white transition delay-150 duration-300 hover:bg-link hover:text-accessColor hover:shadow-xl'>
-                Add to Cart
-              </Button>
-            </div>
-            <Button className='ease-custom-ease mt-4 w-full bg-accessColor font-inter text-white transition delay-150 duration-300 hover:border-white hover:bg-accessColor hover:text-link hover:shadow-lg'>
+            <Counter id={params.id} name={product.name} price={product.price} />
+            <Button className='mt-4 w-full bg-accessColor font-inter text-white transition delay-150 duration-300 ease-custom-ease hover:border-white hover:bg-accessColor hover:text-link hover:shadow-lg'>
               <LuHeart className='mr-2' /> Wishlist
             </Button>
           </div>

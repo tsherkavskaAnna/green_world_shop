@@ -5,7 +5,7 @@ import { urlBase } from '@/lib/urlBase';
 
 export async function getCategories() {
   try {
-    const response = await fetch(`${urlBase}/api/categories?populate=*`, {
+    const response = await fetch(`${urlBase}/api/categories?populate=*&categories=`, {
       method: 'GET',
       cache: 'no-store',
       headers: {

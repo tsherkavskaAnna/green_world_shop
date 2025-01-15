@@ -12,20 +12,32 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import GoogleSignInButton from '@/components/SignInButton';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const route = useRouter();
 
-  const onSubmit = (e: React.FormEvent) => {
+  const { data: session } = useSession();
+  console.log(session);
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    signIn('credentials', {
+    const result = await signIn('credentials', {
       email,
       password,
-      callbackUrl: '/dashboard',
+      redirect: false,
     });
+    if (result?.ok) {
+      toast.success('You are signed in successfully');
+      route.push('/dashboard');
+    } else {
+      toast.error('Invalid email or password. Please try again.');
+    }
   };
 
   return (
