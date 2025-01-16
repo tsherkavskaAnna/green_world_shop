@@ -22,23 +22,27 @@ const LoginForm = () => {
   const [password, setPassword] = React.useState('');
   const route = useRouter();
 
-  const { data: session } = useSession();
-  console.log(session);
+  const { status } = useSession();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = await signIn('credentials', {
       email,
       password,
-      redirect: false,
     });
     if (result?.ok) {
+      //route.push('/dashboard');
       toast.success('You are signed in successfully');
-      route.push('/dashboard');
     } else {
       toast.error('Invalid email or password. Please try again.');
     }
   };
+
+  React.useEffect(() => {
+    if (status === 'authenticated') {
+      route.push('/dashboard');
+    }
+  }, [status, route]);
 
   return (
     <div className='py-16 md:py-10'>

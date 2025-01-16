@@ -12,7 +12,6 @@ import React from 'react';
 
 async function UserDashboard() {
   const session = await getServerSession();
-  //const { data: session, status } = useSession();
 
   if (!session || !session?.user) {
     return (
@@ -52,7 +51,7 @@ async function UserDashboard() {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        <div className='mt-24'>
+        <div className='mb-10 mt-10'>
           <ShoppingCart />
         </div>
       </div>

@@ -18,6 +18,18 @@ export default [
     plugins: {typescriptEslint, importSort, unusedImports}
   },
   {
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,  
+        },
+      },
+      globals: {
+        ...globals.browser,
+      },
+    }
+  },
+  {
     rules: {
       'no-unused-vars': 'off',
       'no-console': 'warn',
@@ -25,7 +37,12 @@ export default [
       'react/no-unescaped-entities': 'off',
       'react/display-name': 'off',
       "react/react-in-jsx-scope": "off",
+      'react/prop-types': [2, { ignore: ['className'] }],
+        'react-refresh/only-export-components': 'off',
 
     }
+  },
+  {
+    ignores: [".react-router/**/*.ts"],
   }
 ];

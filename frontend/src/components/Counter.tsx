@@ -20,9 +20,11 @@ function Counter({ id, name, price }: PropsCounter) {
       toast.warning('You must add a quantity of product to the cart.');
       return;
     }
-    addItem({ id, name, price });
-    toast.success('Added product in your cart successfully');
-    resetCounter();
+    if (count > 0) {
+      addItem({ id, name, price }, count);
+      toast.success('Added product in your cart successfully');
+      resetCounter();
+    }
   };
   return (
     <div className='flex flex-nowrap'>
