@@ -9,8 +9,8 @@ import {
 } from '@/components/ui/breadcrumb';
 import FiltersSidebar from '@/components/Filters/filters';
 //import ProductCard from '@/components/ProductCard/productCard';
-import { getProductById } from '@/services/getProductById';
 import { Product } from '@/interface/product';
+import { getProductBySlug } from '@/services/getProductBySlug';
 
 const ProductCard = dynamic(
   () => import('@/components/ProductCard/productCard'),
@@ -19,14 +19,15 @@ const ProductCard = dynamic(
 
 interface ProductProps {
   product: Product;
-  params: { id: string };
+  params: { slug: string };
 }
 const SingleProductPage: React.FC<ProductProps> = async ({
   params,
 }: {
-  params: { id: string };
+  params: { slug: string };
 }) => {
-  const product = await getProductById(params.id);
+  const product = await getProductBySlug(params.slug);
+
   return (
     <>
       <div className='flex min-h-screen'>

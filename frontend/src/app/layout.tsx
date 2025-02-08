@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: 'Green World',
   description: 'Plants shop',
   icons: {
-    icon: '/favicon/plants-48.png',
+    icon: '/favicon/pianta-da-vaso-48.png',
   },
 };
 
@@ -41,7 +41,7 @@ export default async function MainLayout({
           }}
         />
         <SessionProvider session={session}>
-          <link rel='icon' href='/favicon/plants-96.png' sizes='any' />
+          <link rel='icon' href='/favicon/pianta-da-vaso-96.png' sizes='any' />
           <Header />
           <main className='z-0 sm:px-12'>{children}</main>
           <Footer />

@@ -1,10 +1,8 @@
 import { urlBase } from '@/lib/urlBase';
 
-export async function getTags() {
-  const url = `${urlBase}/api/tags?populate=*`;
-
+export async function getProductBySlug(slug: string) {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(`${urlBase}/api/products/${slug}?populate=*`, {
       method: 'GET',
       cache: 'no-store',
       headers: {
@@ -13,14 +11,14 @@ export async function getTags() {
       },
     });
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
 
     const data = await response.json();
-    return data.data;
+    return data.data[0] || null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    new Error('Failed to fetch products:');
-    throw error;
+    new Error('Error fetching product');
   }
 }

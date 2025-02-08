@@ -42,7 +42,7 @@ const CardProduct: React.FC<CardProps> = ({ product }) => {
           />
         </CardContent>
         <CardHeader className='flex-grow'>
-          <Link href={`/products/${product.id}`}>
+          <Link href={`/products/${product.slug}`}>
             <CardTitle className='text-logo'>{product.name}</CardTitle>
           </Link>
           <CardDescription className='font-blinker text-slate-400'>
@@ -54,7 +54,7 @@ const CardProduct: React.FC<CardProps> = ({ product }) => {
             <p>{product.price} €</p>
             <StarRating rating={calculateAverageRating(product.reviews)} />
           </div>
-          <Button className='ease-custom-ease rounded-xl bg-link text-white transition delay-150 duration-300 hover:bg-accessColor'>
+          <Button className='rounded-xl bg-link text-white transition delay-150 duration-300 ease-custom-ease hover:bg-accessColor'>
             Add to cart
           </Button>
         </CardFooter>

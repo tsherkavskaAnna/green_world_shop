@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import {
   Table,
   TableBody,
@@ -9,78 +8,107 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Button } from '../ui/button';
-import Link from 'next/link';
 import useCartStore from '@/store/useCartStore';
 import { Trash } from 'lucide-react';
+import { ImageStrapi } from '../ImageStrapi';
+import { Button } from '../ui/button';
 import { Card, CardHeader } from '../ui/card';
+//import { ImageStrapi } from '../ImageStrapi';
 
 function ShoppingCart() {
-  const { items, getTotalPrice } = useCartStore();
+  const { items, getTotalPrice, removeItem } = useCartStore();
+
+  const cardImageUrls = items.map((item) => {
+    if (Array.isArray(item.image)) {
+      return (
+        item.image[0]?.formats?.small?.url ||
+        item.image[0]?.formats?.medium?.url ||
+        item.image[0]?.formats?.large?.url ||
+        item.image[0]?.url
+      );
+    } else if (item.image) {
+      return (
+        item.image.formats?.small?.url ||
+        item.image.formats?.medium?.url ||
+        item.image.formats?.large?.url ||
+        item.image.url
+      );
+    }
+    return null;
+  });
 
   const totalPrice = getTotalPrice();
 
-  if (items.length > 0) {
-    return (
-      <>
-        <h1 className='text-center text-3xl font-bold text-nav'>
-          Your shopping cart
-        </h1>
-        <div className='grid grid-cols-3 gap-8 pt-10'>
-          <div className='col-span-2'>
-            <Table className=''>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className=''>Product</TableHead>
-                  <TableHead className='text'>Quantity</TableHead>
-                  <TableHead className=''>Price</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {items.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell className='font-medium'>{item.name}</TableCell>
-                    <TableCell className='border-1 border-s-slate-50'>
-                      {item.quantity}
-                    </TableCell>
-                    <TableCell className='text-left'>{item.price}</TableCell>
-                    <TableCell className='flex justify-end'>
-                      <Trash className='text-red-500' />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-              <TableFooter className=''>
-                <TableRow>
-                  <TableCell colSpan={3}>Total</TableCell>
-                  <TableCell className='text-end'>{totalPrice}</TableCell>
-                </TableRow>
-              </TableFooter>
-            </Table>
-          </div>
-          <div>
-            <Card>
-              <CardHeader>
-                <h2 className='text-lg font-medium'>To Pay</h2>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </>
-    );
-  }
   return (
-    <div className='grid w-full justify-center gap-8 rounded-md bg-border px-16 py-10 pl-4 text-center'>
-      <h1 className='font-baskervvile text-3xl font-bold text-nav'>
-        Your cart is empty
+    <>
+      <h1 className='text-center text-3xl font-bold text-nav'>
+        Your shopping cart
       </h1>
-      <p className='font-montserrat text-link'>
-        There are no items in your cart
-      </p>
-      <Button className='h-11 w-full cursor-pointer rounded-full border-2 bg-accessColor p-5 font-montserrat text-white transition delay-150 duration-300 ease-custom-ease hover:border-accessColor hover:bg-white hover:text-accessColor'>
-        <Link href='/shop'>Return to shop</Link>
-      </Button>
-    </div>
+      <div className='grid grid-cols-3 gap-8 pt-10'>
+        <div className='col-span-2'>
+          <Table className=''>
+            <TableHeader>
+              <TableRow className='bg-slate-100'>
+                <TableHead className='text-lg font-semibold'>Product</TableHead>
+                <TableHead className='text-lg font-semibold'>
+                  Quantity
+                </TableHead>
+                <TableHead className='text-lg font-semibold'>Price</TableHead>
+                <TableHead className='text-lg font-semibold'></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {items.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell className='flex flex-nowrap items-center gap-4 py-4 font-medium'>
+                    <ImageStrapi
+                      src={cardImageUrls[index]}
+                      alt={item.name}
+                      width={50}
+                      height={50}
+                      className='rounded-lg'
+                    />
+                    {item.name}
+                  </TableCell>
+                  <TableCell className=''>{item.quantity}</TableCell>
+                  <TableCell className='text-left'>{item.price}</TableCell>
+                  <TableCell className='text-end'>
+                    <Button className='bg-white py-3 hover:bg-white'>
+                      <Trash
+                        className='w-full text-red-500'
+                        onClick={() => removeItem(item.id)}
+                      />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+            <TableFooter className=''>
+              <TableRow>
+                <TableCell colSpan={3} className='font-semibold'>
+                  Total
+                </TableCell>
+                <TableCell className='text-end'>
+                  {totalPrice.toFixed(2)} €
+                </TableCell>
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </div>
+        <div>
+          <Card>
+            <CardHeader>
+              <h2 className='text-lg font-medium'>Order summary </h2>
+              <span>€{totalPrice}</span>
+              <p className='text-sm font-medium'>
+                Please note that delivery and payment options may vary based on
+                your location.
+              </p>
+            </CardHeader>
+          </Card>
+        </div>
+      </div>
+    </>
   );
 }
 

@@ -1,8 +1,24 @@
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { NextAuthOptions } from 'next-auth';
-import { loginWithCredentials } from '@/app/services/auth-service';
+import { DefaultSession, NextAuthOptions } from 'next-auth';
 
+declare module 'next-auth' {
+  interface User {
+    strapiToken?: string;
+    strapiUserId?: string;
+  }
+
+  interface Session {
+    user: {
+      strapiToken?: string;
+      strapiUserId?: string;
+    } & DefaultSession['user'];
+    accessToken?: string;
+  }
+  interface JWT {
+    accessToken?: string;
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,24 +32,36 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
+
       async authorize(credentials) {
-        try {
-          const data = await loginWithCredentials(
-            credentials!.email,
-            credentials!.password
-          );
-          return {
-            name: data.user.username,
-            email: data.user.email,
-            id: data.user.id.toString(),
-            strapiUserId: data.user.id,
-            blocked: data.user.blocked,
-            strapiToken: data.jwt,
-          };
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
+        const url = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`;
+        const body = JSON.stringify({
+          identifier: credentials?.email,
+          password: credentials?.password,
+        });
+
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+          body: body,
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
           throw new Error('Errore durante il login');
         }
+
+        return {
+          name: data.user.username,
+          email: data.user.email,
+          id: data.user.id.toString(),
+          strapiUserId: data.user.id,
+          blocked: data.user.blocked,
+          strapiToken: data.jwt,
+        };
       },
     }),
   ],
@@ -45,40 +73,51 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 giorni
+    updateAge: 24 * 60 * 60, // 24 ore
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async jwt({ token, account, user }: any) {
-      if (account && account.provider === 'google') {
-        // Gestisci autenticazione Google con Strapi
+    async signIn({ user, account }) {
+      if (account?.provider === 'google') {
         const strapiResponse = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google/callback?access_token=${account.access_token}`
         );
+
+        if (!strapiResponse.ok) {
+          return false;
+        }
+
         const strapiData = await strapiResponse.json();
 
-        token.strapiToken = strapiData.jwt;
-        token.strapiUserId = strapiData.user.id;
-        token.blocked = strapiData.user.blocked;
+        user.strapiToken = strapiData.jwt;
+        user.strapiUserId = strapiData.user.id;
+      }
+
+      return true;
+    },
+    async jwt({ token, user, account }) {
+      if (user && account?.provider === 'google') {
+        token.strapiToken = user.strapiToken;
+        token.strapiUserId = user.strapiUserId;
       }
 
       if (user && account?.provider === 'credentials') {
-        // Aggiungi dati per il provider Credentials
         token.strapiToken = user.strapiToken;
         token.strapiUserId = user.strapiUserId;
-        token.blocked = user.blocked;
       }
 
       return token;
     },
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async session({ session, token }: any) {
-      session.user.id = token.sub;
-      session.user.strapiUserId = token.strapiUserId;
-      session.user.strapiToken = token.strapiToken;
-      session.user.blocked = token.blocked;
-      return session;
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          strapiToken: token.strapiToken,
+          strapiUserId: token.strapiUserId,
+        },
+      };
     },
   },
 };

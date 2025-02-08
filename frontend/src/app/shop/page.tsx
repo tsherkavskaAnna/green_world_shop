@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { montserrat } from '../fonts';
 import {
@@ -10,7 +11,8 @@ import {
 
 import ProductsPage from '../products/page';
 import FiltersSidebar from '@/components/Filters/filters';
-import { Button } from '@/components/ui/button';
+
+import SearchQuery from '@/components/SearchQuery/search';
 
 const ShopPage = () => {
   return (
@@ -33,12 +35,10 @@ const ShopPage = () => {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <SearchQuery />
           <div>
             <ProductsPage />
           </div>
-          <Button className='mb-10 bg-link p-5 text-center text-white hover:bg-text'>
-            Load more...
-          </Button>
         </main>
       </div>
     </>

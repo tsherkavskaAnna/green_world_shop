@@ -2,34 +2,28 @@
  * product controller
  */
 
-import { factories } from '@strapi/strapi'
+import { factories } from '@strapi/strapi';
 
-export default factories.createCoreController('api::product.product', ({ strapi }) => ({
-  async findOne(ctx) {
-    const { id } = ctx.params;
+export default factories.createCoreController(
+	'api::product.product',
+	({ strapi }) => ({
+		async findOne(ctx) {
+			const { slug } = ctx.params;
 
-    const productId = parseInt(id, 10);
-    if (isNaN(productId)) {
-      return ctx.badRequest('Invalid ID format');
-    }
+			const query = {
+				filters: { slug: { $eq: slug } },
+				...ctx.query,
+			};
 
-    
-    const product = await strapi.db.query('api::product.product').findOne({
-      where: { id: productId},
-      populate: {
-        image: { formats: true }, 
-        category: true,         
-        tags: true,             
-        reviews: true,         
-      },
-    });
-
-    if (!product) {
-      return ctx.notFound('Product not found');
-    }
-
-   
-    const sanitizedEntity = await this.sanitizeOutput(product, ctx);
-    return this.transformResponse(sanitizedEntity);
-  },
-}));
+			const product = await strapi.entityService.findMany(
+				'api::product.product',
+				query
+			);
+			if (!product || product.length === 0) {
+				return ctx.notFound('Product not found');
+			}
+			const sanitizedEntity = await this.sanitizeOutput(product, ctx);
+			return this.transformResponse(sanitizedEntity);
+		},
+	})
+);

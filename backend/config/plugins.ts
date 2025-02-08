@@ -1,16 +1,17 @@
 module.exports = ({ env }) => ({
-  upload: {
-    provider: 'supabase', 
-    providerOptions: {
-      apiUrl: env('SUPABASE_API_URL'), 
-      apiKey: env('SUPABASE_ANON_KEY'), 
-      bucket: env('SUPABASE_BUCKET'),
-      
-    },
-    actionOptions: {
-      upload: {},
-      uploadStream: {},
-      delete: {},
-    },
-  },
+	upload: {
+		config: {
+			provider: 'cloudinary',
+			providerOptions: {
+				cloud_name: env('CLOUDINARY_NAME'),
+				api_key: env('CLOUDINARY_KEY'),
+				api_secret: env('CLOUDINARY_SECRET'),
+			},
+			actionOptions: {
+				upload: {},
+				uploadStream: {},
+				delete: {},
+			},
+		},
+	},
 });

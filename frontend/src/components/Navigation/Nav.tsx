@@ -25,7 +25,7 @@ export default function Nav() {
         onClick={closeMenu}
         className={`${montserrat.className} ${
           currentPath === '/' ? 'border-b-4 border-nav' : ''
-        } rounded-none px-4 py-2 text-lg text-primary transition-colors duration-300 hover:text-button`}
+        } rounded-none py-2 text-lg text-primary transition-colors duration-300 hover:text-button lg:px-4`}
       >
         Home
       </Link>
@@ -34,7 +34,7 @@ export default function Nav() {
         onClick={closeMenu}
         className={`${montserrat.className} ${
           currentPath === '/shop' ? 'border-b-4 border-nav' : ''
-        } rounded-none px-4 py-2 text-lg text-primary transition-colors duration-300 hover:text-button`}
+        } rounded-none py-2 text-lg text-primary transition-colors duration-300 hover:text-button lg:px-4`}
       >
         Shop
       </Link>
@@ -43,7 +43,7 @@ export default function Nav() {
         onClick={closeMenu}
         className={`${montserrat.className} ${
           currentPath === '/about' ? 'border-b-4 border-nav' : ''
-        } rounded-none px-4 py-2 text-lg text-primary transition-colors duration-300 hover:text-button`}
+        } rounded-none py-2 text-lg text-primary transition-colors duration-300 hover:text-button lg:px-4`}
       >
         About us
       </Link>

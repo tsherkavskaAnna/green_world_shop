@@ -9,20 +9,22 @@ const Tags = async () => {
 
   return (
     <>
-      {tags.map((tag: Tag) => (
-        <div
-          className={`${montserrat.className} flex flex-nowrap text-link`}
-          key={tag.id}
-        >
-          <Checkbox id='tag' className='mr-3 rounded-3xl' key={tag.id} />
-          <label
-            htmlFor='tag'
-            className='text-sm font-medium capitalize leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
-          >
-            {tag.name}
-          </label>
-        </div>
-      ))}
+      {tags && tags.length > 0
+        ? tags.map((tag: Tag) => (
+            <div
+              className={`${montserrat.className} flex flex-nowrap text-link`}
+              key={tag.id}
+            >
+              <Checkbox id='tag' className='mr-3 rounded-3xl' key={tag.id} />
+              <label
+                htmlFor='tag'
+                className='text-sm font-medium capitalize leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+              >
+                {tag.name}
+              </label>
+            </div>
+          ))
+        : null}
     </>
   );
 };

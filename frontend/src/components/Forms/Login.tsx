@@ -15,34 +15,43 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { signIn, useSession } from 'next-auth/react';
 import GoogleSignInButton from '@/components/SignInButton';
 import { toast } from 'sonner';
+
 import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [rememberMe, setRememberMe] = React.useState(true);
+  const [loggedIn, setLoggetIn] = React.useState(false);
   const route = useRouter();
 
   const { status } = useSession();
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoggetIn(true);
     const result = await signIn('credentials', {
-      email,
-      password,
+      email: email,
+      password: password,
+      redirect: false,
     });
     if (result?.ok) {
-      //route.push('/dashboard');
-      toast.success('You are signed in successfully');
+      route.push('/cart');
     } else {
-      toast.error('Invalid email or password. Please try again.');
+      setTimeout(() => {
+        toast.error('Invalid email or password. Please try again.');
+      }, 500);
+
+      setLoggetIn(false);
     }
   };
 
   React.useEffect(() => {
     if (status === 'authenticated') {
+      toast.success('You are signed in successfully');
       route.push('/dashboard');
     }
-  }, [status, route]);
+  }, [status, loggedIn, route]);
 
   return (
     <div className='py-16 md:py-10'>
@@ -52,7 +61,7 @@ const LoginForm = () => {
             <CardTitle className='text-nav'>Sign in </CardTitle>
           </CardHeader>
           <CardContent>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className='grid w-full items-center gap-6'>
                 <GoogleSignInButton />
                 <div className='flex flex-nowrap items-center md:w-[450px]'>
@@ -66,6 +75,7 @@ const LoginForm = () => {
                   </Label>
                   <Input
                     id='email'
+                    type='email'
                     placeholder='Enter your email'
                     className='rounded-[8px] shadow-xl'
                     value={email}
@@ -85,7 +95,13 @@ const LoginForm = () => {
                   />
                 </div>
                 <div className='ml-2 flex items-center space-x-2 text-link'>
-                  <Checkbox id='terms' />
+                  <Checkbox
+                    id='terms'
+                    checked={rememberMe}
+                    onCheckedChange={(checked) =>
+                      setRememberMe(checked === true)
+                    }
+                  />
                   <label
                     htmlFor='terms'
                     className='ml-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
@@ -102,7 +118,7 @@ const LoginForm = () => {
             </Button>
             <Button
               className='rounded-[8px] bg-button font-montserrat text-white'
-              onClick={onSubmit}
+              onClick={handleSubmit}
             >
               Login
             </Button>

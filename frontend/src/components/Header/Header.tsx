@@ -7,54 +7,45 @@ import { MenuIcon } from 'lucide-react';
 
 function Header() {
   return (
-    <div className='fixed z-50 w-full'>
-      <Baner />
-      <div className='mx-auto w-full font-baskervvile text-black'>
-        {/* Logo e Navigazione Desktop */}
-        <div className='flex h-20 flex-nowrap items-center justify-between gap-10 bg-white py-4 sm:px-12'>
-          <div className='flex flex-nowrap'>
+    <>
+      <nav className='fixed z-50 mb-2 w-full bg-white'>
+        <Baner />
+        <div className='w-screen-2xl mx-auto flex flex-wrap items-center justify-between px-10 py-4'>
+          <div className='flex flex-nowrap gap-2'>
             <Link href='/'>
               <Image
-                src='/logo/logo-1.png'
+                src='/logo/logo-2.png'
                 alt='Logo'
                 width={50}
                 height={50}
                 className='object-contain'
               />
             </Link>
-            <h1 className='rounded-md px-4 py-2 font-baskervvile text-3xl text-logo transition-colors duration-300'>
+            <h1 className='rounded-md py-2 font-montserrat text-3xl text-logo transition-colors duration-300'>
               Harmony
             </h1>
           </div>
+          {/* Checkbox per toggle menu */}
+          <input type='checkbox' id='menu-toggle' className='peer hidden' />
 
-          {/* Desktop Navigation */}
-          <div className='hidden lg:flex'>
-            <Nav />
-          </div>
-
-          {/* Hamburger Menu */}
-          <div className='relative lg:hidden'>
-            <input
-              type='checkbox'
-              id='menu-toggle'
-              className='peer hidden'
-              defaultChecked={false}
-            />
-            <label
-              htmlFor='menu-toggle'
-              className='cursor-pointer text-2xl text-black'
-            >
-              <MenuIcon />
-            </label>
-
-            {/* Mobile Menu */}
-            <div className='absolute right-0 hidden h-screen w-96 flex-col gap-4 bg-white p-4 transition-all duration-300 peer-checked:flex lg:hidden'>
+          {/* Pulsante hamburger menu */}
+          <label
+            htmlFor='menu-toggle'
+            className='inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 lg:hidden'
+          >
+            <MenuIcon className='h-6 w-6' aria-hidden={true} />
+          </label>
+          <div
+            className='hidden w-full peer-checked:block lg:block lg:w-auto'
+            id='menu-content'
+          >
+            <ul className='mt-4 flex flex-col items-center gap-3 rounded-lg bg-gray-50 lg:mt-0 lg:flex-row lg:space-x-8 lg:bg-transparent rtl:space-x-reverse'>
               <Nav />
-            </div>
+            </ul>
           </div>
         </div>
-      </div>
-    </div>
+      </nav>
+    </>
   );
 }
 
