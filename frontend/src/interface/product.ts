@@ -1,4 +1,4 @@
-import { Locale } from "@/config/i18n-config";
+import { Locale } from '@/config/i18n-config';
 
 export interface ImageProduct {
   id: number;
@@ -29,7 +29,6 @@ export interface ImageFormats {
   medium?: ImageFormat;
   thumbnail?: ImageFormat;
 }
-
 
 export interface Review {
   id: string;

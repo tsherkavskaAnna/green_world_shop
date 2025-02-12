@@ -6,7 +6,7 @@ export async function getProductBySlug(slug: string) {
       method: 'GET',
       cache: 'no-store',
       headers: {
-        Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
       },
     });

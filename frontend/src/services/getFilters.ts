@@ -1,26 +1,25 @@
 import { urlBase } from '@/lib/urlBase';
 
-export async function getTags() {
+export async function getFilters(size: string) {
   try {
-    const response = await fetch(`${urlBase}/api/tags`, {
+    const url = `${urlBase}/api/products?filters[size][$containsi]=${size}&populate=*`;
+    const response = await fetch(url, {
+      method: 'GET',
       cache: 'no-store',
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true',
       },
-      mode: 'cors',
     });
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
-
     const data = await response.json();
+
     return data.data || [];
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    new Error('Error fetching');
-    return null;
+    new Error('Error fetching product');
   }
 }

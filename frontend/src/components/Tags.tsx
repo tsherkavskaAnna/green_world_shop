@@ -1,11 +1,17 @@
+'use client';
 import React from 'react';
 import { Checkbox } from './ui/checkbox';
 import { montserrat } from '@/app/fonts';
 import { getTags } from '@/services/getTags';
 
-const Tags = async () => {
-  const tags = await getTags();
+const Tags = () => {
   //const [selectedTag, setSelectedTag] = React.useState('');
+  const [tags, setTags] = React.useState<Tag[]>([]);
+
+  React.useEffect(() => {
+    const fetchData = getTags();
+    fetchData.then((data) => setTags(data));
+  }, []);
 
   return (
     <>

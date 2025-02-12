@@ -39,11 +39,11 @@ const SingleProductPage: React.FC<ProductProps> = async ({
             <Breadcrumb className='font-montserrat text-slate-500'>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href='/shop'>Shop</BreadcrumbLink>
+                  <BreadcrumbLink href='/products'>Shop</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href='/shop'>Plants</BreadcrumbLink>
+                  <BreadcrumbLink href='/products'>Plants</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>

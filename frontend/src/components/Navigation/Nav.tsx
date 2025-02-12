@@ -30,10 +30,10 @@ export default function Nav() {
         Home
       </Link>
       <Link
-        href='/shop'
+        href='/products'
         onClick={closeMenu}
         className={`${montserrat.className} ${
-          currentPath === '/shop' ? 'border-b-4 border-nav' : ''
+          currentPath === '/products' ? 'border-b-4 border-nav' : ''
         } rounded-none py-2 text-lg text-primary transition-colors duration-300 hover:text-button lg:px-4`}
       >
         Shop

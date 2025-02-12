@@ -1,15 +1,21 @@
+'use client';
 import { montserrat } from '@/app/fonts';
 import React from 'react';
 import { Checkbox } from './ui/checkbox';
 import { getCategories } from '@/services/getCategories';
 
-const Categories = async () => {
-  const categories = await getCategories();
+const Categories = () => {
+  const [category, setCategory] = React.useState<Category[]>([]);
+
+  React.useEffect(() => {
+    const fetchCategory = getCategories();
+    fetchCategory.then((data) => setCategory(data));
+  }, []);
 
   return (
     <>
-      {categories && categories.length > 0
-        ? categories.map((cat: Category) => (
+      {category
+        ? category.map((cat: Category) => (
             <div
               className={`${montserrat.className} flex flex-nowrap text-link`}
               key={cat.id}
