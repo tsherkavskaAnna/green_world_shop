@@ -20,6 +20,12 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "cart"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "cart"
     }
   }
 }

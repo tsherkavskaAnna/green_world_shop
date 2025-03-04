@@ -57,3 +57,30 @@ export interface Product {
   locale: Locale;
   localizations: Product[];
 }
+
+export interface ProductStore {
+  id: string | number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: ImageProduct;
+  slug: string;
+}
+
+export interface CartItem {
+  quantity: number;
+  product: ProductStore;
+}
+
+export interface UserInfo {
+  blocked: boolean;
+  confirmed: boolean;
+  createdAt: string;
+  documentId: string;
+  email: string;
+  id: string;
+  publishedAt: string;
+  updatedAt: string;
+  username: string;
+  provider: string;
+}

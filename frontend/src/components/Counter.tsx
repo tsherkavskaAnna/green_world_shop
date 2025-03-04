@@ -8,12 +8,13 @@ import { ImageProduct } from '@/interface/product';
 
 interface PropsCounter {
   id: string | number;
+  documentId: string;
+  slug: string;
   name: string;
   price: number;
   image: ImageProduct;
-  quantity: number;
 }
-function Counter({ id, name, price, quantity, image }: PropsCounter) {
+function Counter({ id, documentId, name, price, slug, image }: PropsCounter) {
   const { incrementCounter, decrementCounter, count, resetCounter } =
     countStore((state) => state);
   const { addItem } = useCartStore();
@@ -21,7 +22,7 @@ function Counter({ id, name, price, quantity, image }: PropsCounter) {
   const handleAddProduct = () => {
     if (count > 0) {
       toast.success(`Added ${name} to your cart!`);
-      addItem({ id, name, price, quantity, image }, count);
+      addItem({ id, documentId, slug, name, price, image }, count);
       resetCounter();
     }
   };

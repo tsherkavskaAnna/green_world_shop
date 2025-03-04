@@ -10,7 +10,7 @@ function Header() {
     <>
       <nav className='fixed z-50 mb-2 w-full bg-white'>
         <Baner />
-        <div className='w-screen-2xl mx-auto flex flex-wrap items-center justify-between px-10 py-4'>
+        <div className='w-screen-2xl mx-auto flex flex-wrap items-center justify-between px-4 py-4 lg:px-10'>
           <div className='flex flex-nowrap gap-2'>
             <Link href='/'>
               <Image
@@ -21,7 +21,7 @@ function Header() {
                 className='object-contain'
               />
             </Link>
-            <h1 className='rounded-md py-2 font-montserrat text-3xl text-logo transition-colors duration-300'>
+            <h1 className='hidden rounded-md py-2 font-montserrat text-3xl text-logo transition-colors duration-300 sm:inline-block'>
               Harmony
             </h1>
           </div>

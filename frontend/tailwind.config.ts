@@ -14,6 +14,7 @@ const config = {
       center: true,
       padding: '4rem',
       screens: {
+        xs: '350px',
         sm: '640px',
         md: '768px',
         lg: '1024px',
@@ -48,9 +49,11 @@ const config = {
         nav: '#A98467',
         link: '#436850',
         text: '#ADBC9F',
-        border: '#D9D9D9',
+        border: '#dbc4ee',
         roundedButton: '#E5D9B6',
         accessColor: '#FF9100',
+        orderButton: '#ae79d3',
+        orderBg: '#d8dbed',
       },
       borderRadius: {
         none: '0',
@@ -80,7 +83,6 @@ const config = {
       },
     },
   },
-  
 } satisfies Config;
 
 export default config;

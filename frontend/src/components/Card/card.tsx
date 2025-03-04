@@ -55,7 +55,7 @@ const CardProduct: React.FC<CardProps> = ({ product }) => {
             <StarRating rating={calculateAverageRating(product.reviews)} />
           </div>
           <Button className='rounded-xl bg-link text-white transition delay-150 duration-300 ease-custom-ease hover:bg-accessColor'>
-            Add to cart
+            <Link href={`/products/${product.slug}`}>Read more</Link>
           </Button>
         </CardFooter>
       </Card>

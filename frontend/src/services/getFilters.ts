@@ -1,25 +1,61 @@
 import { urlBase } from '@/lib/urlBase';
+import qs from 'qs';
 
-export async function getFilters(size: string) {
-  try {
-    const url = `${urlBase}/api/products?filters[size][$containsi]=${size}&populate=*`;
-    const response = await fetch(url, {
-      method: 'GET',
-      cache: 'no-store',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    });
+export async function getFilters(
+  size: string,
+  category: string,
+  tags: string[],
+  maxPrice: number
+) {
+  const path = '/api/products';
 
-    if (response.status !== 200) {
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    }
-    const data = await response.json();
+  const url = new URL(path, urlBase);
 
-    return data.data || [];
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    new Error('Error fetching product');
+  url.search = qs.stringify({
+    populate: '*',
+    filters: {
+      ...(size && {
+        size: {
+          $containsi: size,
+        },
+      }),
+      ...(category && {
+        category: {
+          name: {
+            $eq: category,
+          },
+        },
+      }),
+      ...(tags.length > 0 && {
+        tags: {
+          name: {
+            $in: tags,
+          },
+        },
+      }),
+      ...(maxPrice && {
+        price: {
+          $lte: maxPrice,
+        },
+      }),
+    },
+  });
+
+  const response = await fetch(url, {
+    method: 'GET',
+    cache: 'no-store',
+    headers: {
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Error ${response.status}: ${response.statusText}`);
   }
+  const data = await response.json();
+
+  return data.data || [];
 }
+
+//?filters[size][$containsi]=${size}&populate=*

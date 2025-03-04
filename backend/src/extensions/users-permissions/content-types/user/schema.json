@@ -68,7 +68,8 @@
     "cart": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::cart.cart"
+      "target": "api::cart.cart",
+      "inversedBy": "user"
     }
   }
 }

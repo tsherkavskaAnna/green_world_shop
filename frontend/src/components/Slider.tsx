@@ -2,29 +2,39 @@
 import React from 'react';
 import { Slider } from './ui/slider';
 import { montserrat } from '@/app/fonts';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 function SliderPrice() {
-  const [priceRange, setPriceRange] = React.useState([100, 500]);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const maxPriceFromParams = searchParams.get('maxPrice');
+  const [maxPrice, setMaxPrice] = React.useState(
+    maxPriceFromParams ? Number(maxPriceFromParams) : 500
+  );
 
-  const handlePriceChange = (newValue: any) => {
-    setPriceRange(newValue);
-  };
+  React.useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set('maxPrice', maxPrice.toString());
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
+  }, [maxPrice, router, pathname, searchParams]);
+
   return (
     <div>
-      <div className={`${montserrat.className} py-4 text-slate-500`}>
+      <div className={`${montserrat.className} py-4 text-link`}>
         <p>
-          Price: <span className='ml-4 text-link'>{priceRange[0]} €</span>
+          Price: <span className='ml-4'>{maxPrice} €</span>
         </p>
       </div>
       <div className='flex flex-nowrap items-baseline gap-1'>
-        <span className={`${montserrat.className} text-link`}>0</span>
+        <span className={`${montserrat.className}`}>0</span>
         <Slider
-          defaultValue={priceRange}
           max={500}
           step={1}
-          onValueChange={handlePriceChange}
+          defaultValue={[maxPrice]}
+          onValueChange={(newValue) => setMaxPrice(newValue[0])}
         />
-        <span className={`${montserrat.className} text-link`}>400€</span>
+        <span className={`${montserrat.className} `}>500€</span>
       </div>
     </div>
   );

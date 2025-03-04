@@ -49,7 +49,7 @@ const LoginForm = () => {
   React.useEffect(() => {
     if (status === 'authenticated') {
       toast.success('You are signed in successfully');
-      route.push('/dashboard');
+      route.push('/cart');
     }
   }, [status, loggedIn, route]);
 

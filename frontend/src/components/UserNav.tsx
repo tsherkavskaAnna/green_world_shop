@@ -4,9 +4,12 @@ import { TfiShoppingCart } from 'react-icons/tfi';
 import { useSession, signOut } from 'next-auth/react';
 import { montserrat } from '@/app/fonts';
 import Link from 'next/link';
+import useCartStore from '@/store/useCartStore';
 
 export default function UserNav() {
   const { data: session } = useSession();
+  const { items } = useCartStore();
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   if (session) {
     return (
@@ -22,7 +25,7 @@ export default function UserNav() {
               <TfiShoppingCart size={20} />
             </div>
             <div className='relative bottom-3 right-7 rounded-full border-2 border-red-500 bg-red-500 text-white'>
-              <span className='w-full p-2'>0</span>
+              <span className='w-full p-2'>{cartCount}</span>
             </div>
           </Button>
         </Link>

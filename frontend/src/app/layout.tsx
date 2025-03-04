@@ -9,6 +9,8 @@ import { authOptions } from './api/auth/[...nextauth]/authOptions';
 import { Toaster } from 'sonner';
 
 import 'react-photo-view/dist/react-photo-view.css';
+import React from 'react';
+import ReactQueryProvider from '@/context/queryProvider';
 
 export const metadata: Metadata = {
   title: 'Green World',
@@ -29,23 +31,29 @@ export default async function MainLayout({
       <body
         className={`${inter.variable} ${baskervvile.variable} ${montserrat.variable} ${blinker.variable}`}
       >
-        <Toaster
-          position='top-center'
-          toastOptions={{
-            classNames: {
-              error: 'bg-red-400',
-              success: 'text-green-400',
-              warning: 'text-yellow-400',
-              info: 'bg-blue-400',
-            },
-          }}
-        />
-        <SessionProvider session={session}>
-          <link rel='icon' href='/favicon/pianta-da-vaso-96.png' sizes='any' />
-          <Header />
-          <main className='z-0 sm:px-12'>{children}</main>
-          <Footer />
-        </SessionProvider>
+        <ReactQueryProvider>
+          <Toaster
+            position='top-center'
+            toastOptions={{
+              classNames: {
+                error: 'bg-red-400',
+                success: 'text-green-400',
+                warning: 'text-yellow-400',
+                info: 'bg-blue-400',
+              },
+            }}
+          />
+          <SessionProvider session={session}>
+            <link
+              rel='icon'
+              href='/favicon/pianta-da-vaso-96.png'
+              sizes='any'
+            />
+            <Header />
+            <main className='z-0 sm:px-12'>{children}</main>
+            <Footer />
+          </SessionProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

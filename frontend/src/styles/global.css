@@ -33,3 +33,23 @@
   transform: translateY(0);
   opacity: 1;
 }
+
+.swiper {
+  width: 900px;
+  height: 300px;
+}
+input[type='radio'] {
+  display: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #dbc4ee !important;
+}
+.swiper-scrollbar {
+  background: transparent !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #dbc4ee !important;
+}
