@@ -6,8 +6,8 @@ import Link from 'next/link';
 
 export default function ButtonMenu() {
   return (
-    <div className='flex flex-col pt-4 sm:flex-row sm:flex-nowrap md:pl-10'>
-      <Link href='/shop'>
+    <div className='mt-8 flex flex-col pt-4 sm:flex-row sm:flex-nowrap'>
+      <Link href='/products'>
         <Button
           className={`${montserrat.className} -z-0 mb-4 w-full rounded-lg bg-logo text-white drop-shadow-lg hover:bg-yellow-700`}
         >

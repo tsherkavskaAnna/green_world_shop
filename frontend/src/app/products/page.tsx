@@ -15,11 +15,11 @@ import ProductsList, {
 const ProductsPage = ({ searchParams }: { searchParams: UrlParamsProps }) => {
   return (
     <>
-      <div className='flex min-h-screen'>
+      <div className='container flex min-h-screen'>
         <aside className='hidden w-60 border-r-2 border-text py-32 pr-4 sm:block'>
           <FiltersSidebar />
         </aside>
-        <main className='flex-1 px-10 pt-28 text-center sm:px-0 sm:pl-12'>
+        <main className='flex-1 pt-20 text-center sm:px-0 sm:pl-12'>
           <div className='pt-4'>
             <Breadcrumb className='font-montserrat text-slate-500'>
               <BreadcrumbList>

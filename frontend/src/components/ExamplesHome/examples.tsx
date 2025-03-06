@@ -4,15 +4,15 @@ import Image from 'next/image';
 
 function Examples() {
   return (
-    <div className='hidden md:flex'>
-      <div className='z-10 flex cursor-pointer flex-nowrap pt-44 lg:pl-20'>
+    <div className='container hidden md:flex'>
+      <div className='z-10 flex cursor-pointer flex-nowrap pt-44'>
         <div className='mr-8 h-20 w-72 rounded-full bg-slate-400 drop-shadow-xl'>
           <Image
-            src='/images/pepper.png'
+            src='/images/mon.png'
             alt='plant'
-            width={140}
-            height={140}
-            className='absolute bottom-3 right-40'
+            width={500}
+            height={500}
+            className='absolute bottom-4 right-20'
           />
           <span className='absolute left-28 top-4'>
             Plants for <br></br> Healthy

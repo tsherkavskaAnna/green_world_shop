@@ -19,7 +19,8 @@ const config = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px',
+        xxl: '1536px',
+        xxxl: '1920px',
       },
     },
     extend: {
@@ -30,8 +31,9 @@ const config = {
         blinker: ['var(--font-secondary)'],
       },
       backgroundImage: {
-        'hero-image': "url('/images/monstera.jpeg')",
+        'hero-image': "url('/images/bg.png')",
         'hero-background': "url('/images/shop.jpg')",
+        'user-section-bg': "url('/images/hands.png')",
       },
       theme: {
         backgroundSize: {

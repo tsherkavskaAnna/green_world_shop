@@ -6,7 +6,6 @@ import useCartStore from '@/store/useCartStore';
 
 import Link from 'next/link';
 import React from 'react';
-//import { ImageStrapi } from '../ImageStrapi';
 
 const UserCart = () => {
   const { items } = useCartStore();

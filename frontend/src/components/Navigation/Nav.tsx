@@ -47,6 +47,15 @@ export default function Nav() {
       >
         About us
       </Link>
+      <Link
+        href='/gifts'
+        onClick={closeMenu}
+        className={`${montserrat.className} ${
+          currentPath === '/gifts' ? 'border-b-4 border-nav' : ''
+        } rounded-none py-2 text-lg text-primary transition-colors duration-300 hover:text-button lg:px-4`}
+      >
+        Gifts
+      </Link>
       <UserNav />
     </nav>
   );

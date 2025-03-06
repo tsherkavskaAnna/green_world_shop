@@ -4,7 +4,7 @@ import React, { useTransition } from 'react';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { createNewReview } from '@/services/createNewReview';
+import { createNewReview } from '@/services/createReview';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 

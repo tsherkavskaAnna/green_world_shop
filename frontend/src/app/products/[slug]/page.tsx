@@ -30,7 +30,7 @@ const SingleProductPage: React.FC<ProductProps> = async ({
 
   return (
     <>
-      <div className='flex min-h-screen'>
+      <div className='container flex min-h-screen'>
         <aside className='hidden w-60 border-r-2 border-text py-32 pr-4 sm:block'>
           <FiltersSidebar />
         </aside>

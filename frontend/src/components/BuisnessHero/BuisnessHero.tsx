@@ -9,6 +9,7 @@ import {
 } from '../ui/card';
 import { Button } from '../ui/button';
 import { montserrat } from '@/app/fonts';
+import Link from 'next/link';
 
 function BuisnessHero() {
   return (
@@ -35,11 +36,13 @@ function BuisnessHero() {
           </CardContent>
           <CardFooter>
             <p>
-              <Button
-                className={`${montserrat.className} rounded-lg text-white`}
-              >
-                Get in touch
-              </Button>
+              <Link href='/about'>
+                <Button
+                  className={`${montserrat.className} rounded-lg text-white`}
+                >
+                  Get in touch
+                </Button>
+              </Link>
             </p>
           </CardFooter>
         </Card>

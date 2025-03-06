@@ -15,23 +15,25 @@ async function UserDashboard() {
 
   if (!session || !session?.user) {
     return (
-      <div className='min-h-screen pt-48 text-center font-montserrat'>
-        <h2>This is personal user section.</h2>
-        <p>
-          Please{' '}
-          <Link href='/login' className='text-link'>
-            Login{' '}
-          </Link>
-          <span>or </span>
-          <Link href='/register' className='text-link'>
-            Register
-          </Link>
-        </p>
+      <div className='min-h-screen content-center justify-center bg-hero-image bg-cover bg-no-repeat font-montserrat text-xl'>
+        <div className='ml-96'>
+          <h2>This is personal user section.</h2>
+          <p>
+            Please{' '}
+            <Link href='/login' className='text-link'>
+              Login{' '}
+            </Link>
+            <span>or </span>
+            <Link href='/register' className='text-link'>
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
     );
   } else {
     return (
-      <div className='e min-h-screen justify-center bg-cover bg-right-top bg-no-repeat pt-36 font-montserrat'>
+      <div className='min-h-screen justify-center bg-cover bg-right-top bg-no-repeat pt-36 font-montserrat'>
         <div className='px-16'>
           <Breadcrumb className='font-montserrat text-slate-500'>
             <BreadcrumbList>

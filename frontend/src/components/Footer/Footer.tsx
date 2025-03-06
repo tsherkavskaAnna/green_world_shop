@@ -35,10 +35,10 @@ function Footer() {
           <Button className='mt-6 w-full bg-nav font-mono text-white hover:bg-nav'>
             Subscribe
           </Button>
-          <div className='mt-8 flex flex-nowrap gap-4 text-white'>
-            <FaTwitter size={35} />
-            <FaFacebookF size={35} />
-            <FaInstagramSquare size={35} />
+          <div className='mt-8 flex flex-nowrap justify-evenly gap-4 text-white'>
+            <FaTwitter size={35} className='cursor-pointer' />
+            <FaFacebookF size={35} className='cursor-pointer' />
+            <FaInstagramSquare size={35} className='cursor-pointer' />
           </div>
         </div>
         <div className='grid-rows mt-4 sm:col-span-2 lg:mt-0'>

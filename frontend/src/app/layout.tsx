@@ -50,7 +50,7 @@ export default async function MainLayout({
               sizes='any'
             />
             <Header />
-            <main className='z-0 sm:px-12'>{children}</main>
+            <main className='z-0'>{children}</main>
             <Footer />
           </SessionProvider>
         </ReactQueryProvider>

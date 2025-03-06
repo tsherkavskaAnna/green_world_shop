@@ -54,7 +54,7 @@ const LoginForm = () => {
   }, [status, loggedIn, route]);
 
   return (
-    <div className='py-16 md:py-10'>
+    <div className='pt-16 md:pt-10'>
       <div className='grid h-screen content-center justify-center bg-cover bg-right-top bg-no-repeat sm:bg-hero-image'>
         <Card className='bg-slate-100 px-7 py-4 font-montserrat md:w-[550px]'>
           <CardHeader>

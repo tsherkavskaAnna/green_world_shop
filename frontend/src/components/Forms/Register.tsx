@@ -81,7 +81,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className='py-24 md:py-6'>
+    <div className='pt-24 md:pt-6'>
       <div className='grid h-screen content-center justify-center bg-cover bg-right-top bg-no-repeat sm:bg-hero-image'>
         <Card className='mt-12 w-full bg-slate-100 px-7 py-4 font-montserrat sm:shadow-xl md:w-[550px]'>
           <CardHeader>

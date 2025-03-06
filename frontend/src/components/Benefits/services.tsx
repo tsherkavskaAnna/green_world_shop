@@ -4,8 +4,8 @@ import React from 'react';
 
 function ServicesPart() {
   return (
-    <div className='h-auto bg-white p-8 md:flex md:flex-nowrap md:justify-items-center lg:h-96'>
-      <div className='text-link md:p-8'>
+    <div className='grid-col grid h-auto gap-4 bg-white p-8 text-xl lg:h-96 lg:grid-cols-3'>
+      <div className='content-center text-link md:p-8'>
         <Image
           src='/icons/quality.png'
           width={80}
