@@ -10,6 +10,7 @@ export default function UserNav() {
   const { data: session } = useSession();
   const { items } = useCartStore();
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
+  console.log(cartCount);
 
   if (session) {
     return (
@@ -40,16 +41,8 @@ export default function UserNav() {
   } else {
     return (
       <div className='flex flex-nowrap items-center py-4 pl-0 font-montserrat text-link lg:px-0 lg:py-0 lg:pl-0'>
-        <Link href='/dashboard'>Sign-In</Link>
-        <Link href='/cart'>
-          <Button
-            className={`${montserrat.className} bg-trasparent ml-4 hover:bg-transparent`}
-          >
-            <div className='absolute rounded-full border-2 border-slate-100 bg-white p-4 hover:bg-slate-200'>
-              <TfiShoppingCart size={20} />
-            </div>
-          </Button>
-        </Link>
+        <Link href='/dashboard'>Account</Link>
+        <Link href='/cart'></Link>
       </div>
     );
   }

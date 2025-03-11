@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'tropical';
+  font-style: regular;
+  font-weight: 400;
+  src: url('/fonts/Tropical.ttf');
+}
+@font-face {
+  font-family: 'virnature';
+  font-style: regular;
+  font-weight: 400;
+  src: url('/fonts/Virnature-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'brisbane';
+  font-style: regular;
+  font-weight: 400;
+  src: url('/fonts/Brisbane-Regular.ttf');
+}
+
 .content {
   transition:
     transform 0.5s ease-in-out,

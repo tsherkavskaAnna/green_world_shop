@@ -15,7 +15,7 @@ import ProductsList, {
 const ProductsPage = ({ searchParams }: { searchParams: UrlParamsProps }) => {
   return (
     <>
-      <div className='container flex min-h-screen'>
+      <div className='flex min-h-screen px-6 pt-10'>
         <aside className='hidden w-60 border-r-2 border-text py-32 pr-4 sm:block'>
           <FiltersSidebar />
         </aside>

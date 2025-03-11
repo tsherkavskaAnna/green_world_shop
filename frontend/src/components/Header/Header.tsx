@@ -11,17 +11,17 @@ function Header() {
       <nav className='fixed z-50 mb-2 w-full bg-white'>
         <Baner />
         <div className='w-screen-2xl mx-auto flex flex-wrap items-center justify-between px-4 py-4 lg:px-10'>
-          <div className='flex flex-nowrap gap-2'>
+          <div className='flex flex-nowrap items-center gap-2'>
             <Link href='/'>
               <Image
                 src='/logo/logo-2.png'
                 alt='Logo'
-                width={50}
-                height={50}
+                width={45}
+                height={40}
                 className='object-contain'
               />
             </Link>
-            <h1 className='hidden rounded-md py-2 font-montserrat text-3xl text-logo transition-colors duration-300 sm:inline-block'>
+            <h1 className='font-brisbane hidden rounded-md py-2 text-4xl tracking-wide text-button sm:inline-block'>
               Harmony
             </h1>
           </div>

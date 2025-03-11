@@ -29,6 +29,9 @@ const config = {
         baskervvile: ['var(--font-logo)'],
         montserrat: ['var(--font-primary)'],
         blinker: ['var(--font-secondary)'],
+        virnature: ['virnature'],
+        tropical: ['tropical'],
+        brisbane: ['brisbane'],
       },
       backgroundImage: {
         'hero-image': "url('/images/bg.png')",
@@ -47,7 +50,6 @@ const config = {
       colors: {
         primary: '#12372A',
         button: '#138808',
-        logo: '#A98467',
         nav: '#A98467',
         link: '#436850',
         text: '#ADBC9F',

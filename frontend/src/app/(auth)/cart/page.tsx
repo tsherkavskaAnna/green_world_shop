@@ -16,14 +16,14 @@ const UserCart = () => {
         <ShoppingCart />
       ) : (
         <>
-          <div className='grid w-full justify-center gap-8 rounded-md bg-[#e1eae2] px-16 py-10 pl-4 text-center'>
+          <div className='grid w-full justify-center gap-8 rounded-md bg-[#f3eeed] px-16 py-16 pl-4 text-center'>
             <h1 className='font-baskervvile text-3xl font-bold text-nav'>
               Your cart is empty
             </h1>
             <p className='font-montserrat text-link'>
               There are no items in your cart
             </p>
-            <Button className='h-11 w-full cursor-pointer rounded-xl border-2 bg-[#c59fe1] p-5 font-montserrat text-white hover:bg-[#dbc4ee]'>
+            <Button className='h-11 w-full cursor-pointer rounded-xl bg-[#c59fe1] p-5 font-montserrat text-white hover:bg-[#dbc4ee]'>
               <Link href='/products'>Return to shop</Link>
             </Button>
           </div>

@@ -17,6 +17,7 @@ import GoogleSignInButton from '@/components/SignInButton';
 import { toast } from 'sonner';
 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const LoginForm = () => {
   const [email, setEmail] = React.useState('');
@@ -114,7 +115,9 @@ const LoginForm = () => {
           </CardContent>
           <CardFooter className='grid w-full gap-4 sm:flex sm:justify-end'>
             <Button className='rounded-[8px] bg-button font-montserrat text-white'>
-              Cancel
+              <Link href='/dashboard' className='cursor-pointer text-white'>
+                Cancel
+              </Link>
             </Button>
             <Button
               className='rounded-[8px] bg-button font-montserrat text-white'
@@ -123,6 +126,12 @@ const LoginForm = () => {
               Login
             </Button>
           </CardFooter>
+          <CardContent className='text-center'>
+            Don't have an account yet?{' '}
+            <Link href='/register' className='cursor-pointer text-nav'>
+              Register
+            </Link>
+          </CardContent>
         </Card>
       </div>
     </div>

@@ -2,13 +2,16 @@ import { urlBase } from '@/lib/urlBase';
 
 export async function getAllProducts() {
   try {
-    const response = await fetch(`${urlBase}/api/products?populate=*`, {
-      cache: 'no-store',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await fetch(
+      `${urlBase}/api/products?locale=en&populate=*`,
+      {
+        cache: 'no-store',
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);

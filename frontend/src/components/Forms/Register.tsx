@@ -156,11 +156,10 @@ const RegisterForm = () => {
             </form>
           </CardContent>
           <CardFooter className='grid w-full gap-4 sm:flex sm:justify-end'>
-            <Button
-              className='mr-4 rounded-[8px] bg-button font-montserrat text-white'
-              onClick={() => route.push('/')}
-            >
-              Cancel
+            <Button className='mr-4 rounded-[8px] bg-button font-montserrat text-white'>
+              <Link href='/dashboard' className='cursor-pointer text-white'>
+                Cancel
+              </Link>
             </Button>
             <Button
               className='mr-4 rounded-[8px] bg-button font-montserrat text-white'

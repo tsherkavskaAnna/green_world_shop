@@ -5,8 +5,8 @@ import Image from 'next/image';
 function Examples() {
   return (
     <div className='container hidden md:flex'>
-      <div className='z-10 flex cursor-pointer flex-nowrap pt-44'>
-        <div className='mr-8 h-20 w-72 rounded-full bg-slate-400 drop-shadow-xl'>
+      <div className='z-10 flex cursor-pointer flex-nowrap pt-36'>
+        <div className='mr-8 h-20 w-72 rounded-full bg-[#9db8a4] drop-shadow-xl'>
           <Image
             src='/images/mon.png'
             alt='plant'
@@ -21,7 +21,7 @@ function Examples() {
             <FaArrowRightLong size={20} />
           </div>
         </div>
-        <div className='mr-8 h-20 w-72 cursor-pointer rounded-full bg-slate-400 drop-shadow-xl'>
+        <div className='mr-8 h-20 w-72 cursor-pointer rounded-full bg-[#9db8a4] drop-shadow-xl'>
           <Image
             src='/images/peace-lily.png'
             alt='plant'

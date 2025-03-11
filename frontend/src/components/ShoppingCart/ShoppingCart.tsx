@@ -86,7 +86,6 @@ function ShoppingCart() {
       }
 
       const data = await response.json();
-      console.log('Checkout session data:', data);
 
       if (data.url) {
         window.location.href = data.url;
@@ -100,7 +99,7 @@ function ShoppingCart() {
   };
 
   return (
-    <>
+    <div className='container'>
       <h1 className='text-center text-xl font-bold text-nav lg:text-3xl'>
         Your shopping cart
       </h1>
@@ -242,7 +241,7 @@ function ShoppingCart() {
           </Card>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
