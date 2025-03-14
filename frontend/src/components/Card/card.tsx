@@ -19,9 +19,15 @@ interface CardProps {
 
 const CardProduct: React.FC<CardProps> = ({ product }) => {
   const cardImageUrl =
-    product.image?.[0]?.formats?.large?.url || product.image?.[0]?.url;
+    product.image &&
+    product.image.length > 0 &&
+    product.image[0]?.formats?.large?.url
+      ? product.image[0].url
+      : 'no image available';
   const cardImageAlt =
-    product.image[0]?.alternativeText || product.name || 'product image';
+    product.image && product.image.length > 0
+      ? product.image[0].alternativeText || product.name || 'product image'
+      : 'product image';
 
   const calculateAverageRating = (reviews: { rating: number }[]) => {
     if (!reviews.length) return 0;

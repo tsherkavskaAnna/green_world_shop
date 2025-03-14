@@ -32,7 +32,7 @@ function ImageGallery({ images, productName }: ImageGalleryProps) {
           : 'cubic-bezier(0.34, 1.56, 0.64, 1)'
       }
     >
-      <div className='flex flex-col gap-3'>
+      <div className='flex flex-col gap-4'>
         {/* Immagine principale */}
         {mainImage && (
           <PhotoView src={mainImage}>
@@ -47,7 +47,7 @@ function ImageGallery({ images, productName }: ImageGalleryProps) {
           </PhotoView>
         )}
         {/* Immagini piccole */}
-        <div className='grid-row grid gap-2 md:grid-cols-4'>
+        <div className='grid-row grid h-full w-full gap-2 md:grid-cols-4'>
           {images.slice(1, 5).map((image) => {
             const imageUrl =
               image.formats.large?.url ||

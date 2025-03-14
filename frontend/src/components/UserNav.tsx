@@ -10,7 +10,6 @@ export default function UserNav() {
   const { data: session } = useSession();
   const { items } = useCartStore();
   const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
-  console.log(cartCount);
 
   if (session) {
     return (

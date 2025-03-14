@@ -17,7 +17,10 @@ export async function getQuery(query: string) {
     }
     const data = await response.json();
 
-    return data.data || [];
+    return {
+      data: data.data || [],
+      pagination: data.meta.pagination,
+    };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     new Error('Error fetching product');

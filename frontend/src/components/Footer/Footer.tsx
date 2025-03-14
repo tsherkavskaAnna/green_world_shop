@@ -28,13 +28,15 @@ function Footer() {
           <h4 className='font-montserrat text-nav'>
             Be part of our community be subscribing to our newsletters!
           </h4>
-          <Input
-            placeholder='Email address'
-            className='mt-6 font-mono text-nav'
-          />
-          <Button className='mt-6 w-full bg-nav font-mono text-white hover:bg-nav'>
-            Subscribe
-          </Button>
+          <form>
+            <Input
+              placeholder='Email address'
+              className='mt-6 font-mono text-nav'
+            />
+            <Button className='mt-6 w-full bg-nav font-mono text-white hover:bg-nav'>
+              Subscribe
+            </Button>
+          </form>
           <div className='mt-8 flex flex-nowrap justify-evenly gap-4 text-white'>
             <FaTwitter size={35} className='cursor-pointer' />
             <FaFacebookF size={35} className='cursor-pointer' />
@@ -105,7 +107,7 @@ function Footer() {
         </div>
         <Separator className='color-nav mb-2 mt-2' />
         <p className='text-center font-montserrat text-nav'>
-          © 2024 Patch Harmony Ltd
+          © 2024 AnT Harmony Ltd
         </p>
       </div>
     </>

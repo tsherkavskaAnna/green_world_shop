@@ -84,3 +84,10 @@ export interface UserInfo {
   username: string;
   provider: string;
 }
+
+export interface PaginationMeta {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
