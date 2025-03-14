@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "next-sitemap.config.js"
+    "next-sitemap.js"
   ],
   "exclude": ["node_modules"],
   "moduleResolution": ["node_modules", ".next", "node"]
