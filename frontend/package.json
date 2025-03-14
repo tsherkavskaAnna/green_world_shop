@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-sitemap",
+    "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint src/",
     "format": "prettier --check --ignore-path .gitignore .",
@@ -35,6 +36,7 @@
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
     "next-auth": "^4.24.10",
+    "next-sitemap": "^4.2.3",
     "qs": "^6.14.0",
     "react": "^18",
     "react-dom": "^18",
