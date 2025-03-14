@@ -21,9 +21,7 @@ interface ProductProps {
   product: Product;
   params: { slug: string };
 }
-const SingleProductPage: React.FC<ProductProps> = async ({
-  params,
-}: ProductProps) => {
+const SingleProductPage = async ({ params }: ProductProps) => {
   const product = await getProductBySlug(params.slug);
 
   return (
