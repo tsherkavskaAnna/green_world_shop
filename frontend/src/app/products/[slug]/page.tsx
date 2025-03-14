@@ -8,8 +8,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import FiltersSidebar from '@/components/Filters/filters';
-//import ProductCard from '@/components/ProductCard/productCard';
-import { Product } from '@/interface/product';
+
 import { getProductBySlug } from '@/services/getProductBySlug';
 
 const ProductCard = dynamic(
@@ -18,11 +17,11 @@ const ProductCard = dynamic(
 );
 
 interface ProductProps {
-  product: Product;
   params: { slug: string };
 }
 export default async function SingleProductPage({ params }: ProductProps) {
   const product = await getProductBySlug(params.slug);
+  console.log(params);
 
   return (
     <>
