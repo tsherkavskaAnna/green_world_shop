@@ -21,7 +21,7 @@ interface ProductProps {
   product: Product;
   params: { slug: string };
 }
-const SingleProductPage = async ({ params }: ProductProps) => {
+export default async function SingleProductPage({ params }: ProductProps) {
   const product = await getProductBySlug(params.slug);
 
   return (
@@ -53,5 +53,4 @@ const SingleProductPage = async ({ params }: ProductProps) => {
       </div>
     </>
   );
-};
-export default SingleProductPage;
+}
