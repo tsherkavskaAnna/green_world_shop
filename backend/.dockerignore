@@ -1,0 +1,19 @@
+.tmp/
+.cache/
+.git/
+build/
+.env
+data/
+backup/
+node_modules /
+*.log
+.vscode
+.env.local
+.env.example
+.editorconfig
+.gitignore
+.nvmrc
+docker-compose.yml
+Dockerfile
+Dockerfile.local
+README.md
