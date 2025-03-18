@@ -7,7 +7,7 @@
 	"deploy": {
 		"runtime": "V2",
 		"numReplicas": 1,
-		"startCommand": "yarn develop",
+		"startCommand": "yarn start",
 		"sleepApplication": false,
 		"multiRegionConfig": {
 			"us-west2": {
