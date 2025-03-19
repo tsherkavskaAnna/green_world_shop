@@ -82,7 +82,7 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account }) {
       if (account?.provider === 'google') {
         const strapiResponse = await fetch(
-          `https://green-world-backend.up.railway.app/api/auth/google/callback?access_token=${account.access_token}`
+          `${process.env.NEXT_PUBLIC_API_URL}/callback?access_token=${account.access_token}`
         );
 
         if (!strapiResponse.ok) {
