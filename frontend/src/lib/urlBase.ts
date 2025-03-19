@@ -1,1 +1,1 @@
-export const urlBase = 'http://127.0.0.1:1337';
+export const urlBase = 'https://green-world-backend.up.railway.app';

@@ -27,7 +27,7 @@ export async function createNewCommunity(user: Community) {
     body: bodyData,
     cache: 'no-store',
     headers: {
-      Authorization: process.env.STRAPI_TOKEN || '',
+      Authorization: process.env.NEXT_PUBLIC_STRAPI_API_TOKEN || '',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': 'true',
     },
