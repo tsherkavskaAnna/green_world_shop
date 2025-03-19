@@ -10,8 +10,8 @@ module.exports = ({ env }) => [
 				'Access-Control-Allow-Credentials',
 			],
 			origin: [
+				'https://green-world-shop.vercel.app',
 				'http://localhost:3000',
-				'https://green-world-shop.vercel.app/',
 			], // Dominio del frontend
 			methods: ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'],
 			credentials: true,

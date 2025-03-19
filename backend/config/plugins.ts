@@ -14,4 +14,13 @@ module.exports = ({ env }) => ({
 			},
 		},
 	},
+	'user-permissions': {
+		config: {
+			cors: {
+				enabled: true,
+				headers: '*',
+				origin: ['https://green-world-shop.vercel.app'],
+			},
+		},
+	},
 });
