@@ -51,7 +51,7 @@ const RegisterForm = () => {
 
     try {
       const register = await axios.post(
-        'http://localhost:1337/api/auth/local/register',
+        'https://green-world-backend.up.railway.app/api/auth/local/register',
         registerInfo,
         {
           headers: {
