@@ -21,11 +21,10 @@ interface ProductProps {
 }
 export default async function SingleProductPage({ params }: ProductProps) {
   const product = await getProductBySlug(params.slug);
-  console.log(params);
 
   return (
     <>
-      <div className='container flex min-h-screen'>
+      <div className='flex min-h-screen px-10'>
         <aside className='hidden w-60 border-r-2 border-text py-32 pr-4 sm:block'>
           <FiltersSidebar />
         </aside>

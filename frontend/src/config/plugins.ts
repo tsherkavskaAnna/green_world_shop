@@ -9,11 +9,12 @@ export default ({ env }: any) => ({
         allowedFields: ['username'],
       },
       providers: {
-        github: {
+        google: {
           enabled: true,
           key: env('GOOGLE_CLIENT_ID'),
           secret: env('GOOGLE_CLIENT_SECRET'),
-          redirect_uri: 'http://localhost:1337/api/connect/github/callback',
+          redirect_uri:
+            'https://green-world-backend.up.railway.app/api/connect/google/callback',
           scope: ['user', 'user:email', 'sessions'],
         },
       },

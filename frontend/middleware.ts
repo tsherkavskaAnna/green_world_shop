@@ -4,8 +4,11 @@ import type { NextRequest } from 'next/server';
 
 const isProduction = process.env.DATASET === 'production';
 const corsOrigins = isProduction
-  ? ['http://localhost:3000', 'http://127.0.0.1:1337']
-  : ['*'];
+  ? [
+      'https://green-world-shop.vercel.app',
+      'https://green-world-backend.up.railway.app',
+    ]
+  : ['http://localhost:3000', 'http://127.0.0.1:1337'];
 
 export function middleware(req: NextRequest) {
   const origin = req.headers.get('origin');
@@ -19,8 +22,10 @@ export function middleware(req: NextRequest) {
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  if (corsOrigins.includes('*') || corsOrigins.includes(origin || '')) {
-    res.headers.set('Access-Control-Allow-Origin', origin || '*');
+  if (origin && corsOrigins.includes(origin)) {
+    res.headers.set('Access-Control-Allow-Origin', origin);
+  } else if (!isProduction) {
+    res.headers.set('Access-Control-Allow-Origin', '*');
   }
 
   return res;

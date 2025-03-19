@@ -32,10 +32,8 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-
       async authorize(credentials) {
-        const url =
-          'https://green-world-shop.vercel.app/api/auth/providers/api/auth/local';
+        const url = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`;
         const body = JSON.stringify({
           identifier: credentials?.email,
           password: credentials?.password,
@@ -46,7 +44,6 @@ export const authOptions: NextAuthOptions = {
           headers: {
             'Content-Type': 'application/json',
           },
-
           body: body,
         });
 
@@ -82,7 +79,7 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account }) {
       if (account?.provider === 'google') {
         const strapiResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/callback?access_token=${account.access_token}`
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/google/callback?access_token=${account.access_token}`
         );
 
         if (!strapiResponse.ok) {
