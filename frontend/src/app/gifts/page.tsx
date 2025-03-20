@@ -38,9 +38,9 @@ const GiftsPage = () => {
   };
 
   return (
-    <div className='l min-h-screen flex-col bg-[#f9f7f7] px-6 pb-6 pt-36 text-center font-montserrat lg:p-40'>
-      <div className='px-20 py-10 text-xl font-semibold text-nav'>
-        <p>
+    <div className='min-h-screen flex-col bg-[#f9f7f7] px-6 pb-6 pt-36 text-center font-montserrat lg:p-40'>
+      <div className='py-10 text-xl font-semibold text-nav lg:px-20'>
+        <p className='text-lg'>
           Looking for the perfect gift for a friend, family member, or even
           yourself? Our exclusive Plant Gift Kits are the ideal way to bring
           greenery into any home! Whether you're a beginner, a pet owner, a
@@ -49,9 +49,7 @@ const GiftsPage = () => {
         </p>
       </div>
       {isLoadingAll && (
-        <p className='text-start font-montserrat text-slate-400'>
-          Caricamento...
-        </p>
+        <p className='text-start font-montserrat text-slate-400'>Loading...</p>
       )}
       {isErrorAll && (
         <p className='text-start font-montserrat text-red-400'>
@@ -60,7 +58,7 @@ const GiftsPage = () => {
       )}
       <div className=''>
         {/* Kits Grid */}
-        <div className='container grid grid-cols-1 gap-6 lg:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-6 xl:container xl:grid-cols-2'>
           {allKits?.map((product: Kit) => (
             <div key={product.id}>
               <h2 className='my-4 font-blinker text-xl font-semibold text-accessColor'>
@@ -69,9 +67,9 @@ const GiftsPage = () => {
               <div className='group relative aspect-video cursor-pointer overflow-hidden rounded-t-xl'>
                 <div className='absolute inset-x-0 -bottom-0 z-10 flex cursor-pointer items-end rounded-t-xl bg-gradient-to-t from-primary via-[#339041]/60 to-[#D8DFCA]/90 pt-4 text-white opacity-0 backdrop-blur-md transition duration-300 ease-in-out group-hover:opacity-100'>
                   <div>
-                    <div className='translate-y-4 transform space-y-3 p-4 pb-10 text-xl transition duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100'>
+                    <div className='max-h-60 translate-y-4 transform space-y-3 overflow-y-auto p-4 pb-10 text-xl transition duration-300 ease-in-out group-hover:translate-y-0 group-hover:opacity-100'>
                       <div
-                        className='text-base opacity-100'
+                        className='text-sm opacity-100 xl:text-base 2xl:text-lg'
                         dangerouslySetInnerHTML={{
                           __html: product.description,
                         }}

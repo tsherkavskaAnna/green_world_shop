@@ -6,7 +6,7 @@ import ButtonMenu from '../ButtonMenu/ButtonMenu';
 export default function Hero() {
   return (
     <div className='h-fit bg-hero-image bg-no-repeat lg:bg-cover'>
-      <div className='container py-10 text-base/8'>
+      <div className='px-6 py-10 text-base/8 md:container md:px-0'>
         <div className='pt-10 text-center font-baskervvile sm:pt-16 md:pl-10 md:text-start'>
           <h1 className='font-virnature text-5xl font-bold text-nav lg:text-7xl'>
             Green Planet
@@ -16,7 +16,7 @@ export default function Hero() {
           <h2 className='text-xl md:text-4xl'>Bringing Nature to Your Home</h2>
         </div>
         <div className='pt-2 font-baskervvile md:pl-10'>
-          <h3 className='text-xl text-primary lg:text-2xl'>
+          <h3 className='text-lg text-primary md:text-xl lg:text-2xl'>
             Harmony by NurtureSystem provides everything you need <br></br> to
             achieve healthy, luscious growth for your houseplants.
             <br></br>Harmony is well-suited to Monstera, Philodendron,

@@ -12,12 +12,11 @@ import React from 'react';
 
 async function UserDashboard() {
   const session = await getServerSession();
-  console.log(session);
 
   if (!session || !session?.user) {
     return (
       <div className='min-h-screen content-center justify-center bg-hero-image bg-cover bg-no-repeat font-montserrat text-xl'>
-        <div className='ml-10 sm:ml-60 lg:ml-96'>
+        <div className='ml-10 mt-40 sm:ml-60 lg:ml-96 lg:mt-20'>
           <h2>This is personal user section.</h2>
           <p>
             Please{' '}

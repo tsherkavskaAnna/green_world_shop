@@ -114,9 +114,7 @@ function ProductsList({ searchParams }: { searchParams: UrlParamsProps }) {
   return (
     <div className='flex min-h-screen flex-col justify-between'>
       {isLoading && (
-        <p className='text-start font-montserrat text-slate-400'>
-          Caricamento...
-        </p>
+        <p className='text-start font-montserrat text-slate-400'>Loading...</p>
       )}
       {isError && (
         <p className='text-start font-montserrat text-red-400'>
@@ -126,15 +124,10 @@ function ProductsList({ searchParams }: { searchParams: UrlParamsProps }) {
       {/* Products grid */}
       <div className='flex-grow'>
         <div className='grid-row mb-3 grid gap-4 py-6 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
-          {productsToDisplay.length > 0 ? (
+          {productsToDisplay.length > 0 &&
             productsToDisplay.map((product: Product) => (
               <CardProduct product={product} key={product.id} />
-            ))
-          ) : (
-            <div className='text-start font-montserrat text-slate-400'>
-              No products found.
-            </div>
-          )}
+            ))}
         </div>
       </div>
       {/* Pagination with button */}

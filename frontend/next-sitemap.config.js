@@ -4,4 +4,5 @@ module.exports = {
   siteUrl: process.env.NEXTAUTH_URL || 'https://green-world-shop.vercel.app',
   generateRobotsTxt: true,
   sitemapSize: 7000,
+  exclude: ['/dashboard', '/cart'],
 };
