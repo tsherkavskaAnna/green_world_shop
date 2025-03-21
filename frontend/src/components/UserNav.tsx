@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { montserrat } from '@/app/fonts';
 import Link from 'next/link';
 import useCartStore from '@/store/useCartStore';
+import { ShoppingCart } from 'lucide-react';
 
 export default function UserNav() {
   const { data: session } = useSession();
@@ -39,9 +40,11 @@ export default function UserNav() {
     );
   } else {
     return (
-      <div className='flex flex-nowrap items-center py-4 pl-0 font-montserrat text-link lg:px-0 lg:py-0 lg:pl-0'>
+      <div className='flex flex-nowrap items-center gap-3 py-4 pl-0 font-montserrat text-link lg:px-0 lg:py-0 lg:pl-0'>
         <Link href='/dashboard'>Account</Link>
-        <Link href='/cart'></Link>
+        <Link href='/cart'>
+          <ShoppingCart />
+        </Link>
       </div>
     );
   }

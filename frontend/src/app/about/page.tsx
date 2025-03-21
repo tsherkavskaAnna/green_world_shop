@@ -14,6 +14,10 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import CommunityForm from '@/components/CommunityForm';
 
+export const metadata = {
+  title: 'About us - Green Planet',
+};
+
 function AboutPage() {
   return (
     <div className='container min-h-screen flex-col px-6 pt-36 text-center font-montserrat lg:container lg:pt-48'>

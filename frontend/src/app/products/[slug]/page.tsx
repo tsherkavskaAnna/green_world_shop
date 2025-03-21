@@ -10,6 +10,7 @@ import {
 import FiltersSidebar from '@/components/Filters/filters';
 
 import { getProductBySlug } from '@/services/getProductBySlug';
+import { Metadata } from 'next';
 
 const ProductCard = dynamic(
   () => import('@/components/ProductCard/productCard'),
@@ -19,6 +20,12 @@ const ProductCard = dynamic(
 interface ProductProps {
   params: { slug: string };
 }
+
+export const generateMetadata = ({ params }: ProductProps): Metadata => {
+  return {
+    title: `Product - ${params.slug}`,
+  };
+};
 export default async function SingleProductPage({ params }: ProductProps) {
   const product = await getProductBySlug(params.slug);
 

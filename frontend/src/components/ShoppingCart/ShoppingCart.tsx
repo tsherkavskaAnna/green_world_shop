@@ -92,9 +92,9 @@ function ShoppingCart() {
       } else {
         throw new Error('Unable to retrieve checkout URL');
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast.error('An error occurred during checkout.');
-      console.error(error);
     }
   };
 

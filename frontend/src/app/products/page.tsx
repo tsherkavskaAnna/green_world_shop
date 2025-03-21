@@ -12,6 +12,10 @@ import ProductsList, {
   UrlParamsProps,
 } from '@/components/AllProductsList/allProducts';
 
+export const metadata = {
+  title: 'Products - Green Planet',
+};
+
 const ProductsPage = ({ searchParams }: { searchParams: UrlParamsProps }) => {
   return (
     <>

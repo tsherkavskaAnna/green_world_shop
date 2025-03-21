@@ -1,8 +1,10 @@
-// eslint-disable-next-line no-undef
+/* eslint-disable no-undef */
+/** @type {import('next-sitemap').IConfig} */
+
 module.exports = {
-  // eslint-disable-next-line no-undef
   siteUrl: process.env.NEXTAUTH_URL || 'https://green-world-shop.vercel.app',
   generateRobotsTxt: true,
-  sitemapSize: 7000,
-  exclude: ['/dashboard', '/cart'],
+  sitemapSize: 5000,
+  generateIndexSitemap: true,
+  exclude: ['/dashboard', '/cart', '/login', '/register'],
 };

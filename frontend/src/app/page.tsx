@@ -4,6 +4,10 @@ import ServicesPart from '@/components/Benefits/services';
 import dynamic from 'next/dynamic';
 import PromoGifts from '@/components/Promo/promo';
 
+export const metadata = {
+  title: 'Home - Green Planet',
+};
+
 const DynamicHero = dynamic(
   () => import('../components/BuisnessHero/BuisnessHero'),
   {

@@ -13,7 +13,7 @@ import React from 'react';
 import ReactQueryProvider from '@/context/queryProvider';
 
 export const metadata: Metadata = {
-  title: 'Green World',
+  title: 'Green Planet',
   description: 'Plants shop',
   icons: {
     icon: '/favicon/pianta-da-vaso-48.png',

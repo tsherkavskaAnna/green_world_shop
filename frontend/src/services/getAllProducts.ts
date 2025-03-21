@@ -27,7 +27,7 @@ export async function getAllProducts(
   );
   const response = await fetch(url, {
     method: 'GET',
-    cache: 'no-store',
+    cache: 'no-cache',
     headers: {
       Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       'Content-Type': 'application/json',

@@ -10,6 +10,10 @@ import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import React from 'react';
 
+export const metadata = {
+  title: 'Dashboard - Green Planet',
+};
+
 async function UserDashboard() {
   const session = await getServerSession();
 
