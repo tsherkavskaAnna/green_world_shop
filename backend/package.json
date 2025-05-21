@@ -4,11 +4,10 @@
 	"private": true,
 	"description": "A Strapi application",
 	"scripts": {
-		"build": "strapi build",
-		"deploy": "strapi deploy",
-		"develop": "strapi develop",
-		"start": "strapi start",
-		"strapi": "strapi"
+		"build": "node node_modules/@strapi/strapi/bin/strapi.js build",
+        "start": "node node_modules/@strapi/strapi/bin/strapi.js start",
+        "develop": "node node_modules/@strapi/strapi/bin/strapi.js develop",
+        "strapi": "node node_modules/@strapi/strapi/bin/strapi.js"
 	},
 	"dependencies": {
 		"@_sh/strapi-plugin-ckeditor": "^4.0.11",
