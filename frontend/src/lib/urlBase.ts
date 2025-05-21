@@ -1,3 +1,3 @@
-export const urlBase = 'https://green-world-shop-4hqc.onrender.com';
+export const urlBase = 'https://green-world-backend.up.railway.app';
 
 //https://green-world-backend.up.railway.app
