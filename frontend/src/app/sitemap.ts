@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
   const data = await res.json();
 
-  const singleProduct: MetadataRoute.Sitemap = data.data.map(
+  const singleProduct: MetadataRoute.Sitemap = (data?.data ?? []).map(
     (product: Product) => ({
       url: `${process.env.NEXTAUTH_URL}/products/${product.slug}?pagination[pageSize]=100`,
     })
